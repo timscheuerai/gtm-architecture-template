@@ -17,6 +17,8 @@ The [setup guide](oxygen-setup.md) installs this kit's 13 definitions. `npm run 
 
 The [composition guide](composition.md) shows callable binding, input/output mapping and the Sequence handoff. Use `.oxygen/gtm-architecture.json` for this installation's recorded IDs; it is ignored by Git. Never copy another workspace's IDs into a public template.
 
+Use [the OXYGEN skill guide](oxygen-skills.md) to choose the native procedure for context, orchestration, delivery or ongoing operations. Provider-specific procurement/setup skills are not bundled; `oxygen-email-infra` discovers native options and their current quotes.
+
 For a real operation, distinguish:
 
 1. Definition installed.

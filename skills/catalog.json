@@ -2,20 +2,6 @@
   "schema_version": 1,
   "skills": [
     {
-      "name": "boomerang-lead-sourcing",
-      "group": "GTM",
-      "description": "Turn a user-supplied Apollo or Boomerang export into a narrowly defined, auditable account batch for OXYGEN.",
-      "path": ".agents/skills/boomerang-lead-sourcing/SKILL.md",
-      "sources": [
-        {
-          "repo": "OXYGEN-CRO/gtm-vault",
-          "revision": "12accb49fb765597537768466b8bf7c59af250c0",
-          "path": "skills/boomerang-lead-sourcing/SKILL.md",
-          "treatment": "rewritten for current kit; client data and stale commands removed"
-        }
-      ]
-    },
-    {
       "name": "brand-review",
       "group": "Visuals",
       "description": "Review a rendered graphic or visual system for message clarity, identity consistency and export quality; make fixes when requested.",
@@ -54,20 +40,6 @@
           "revision": "17eb37ada46ceb2193f76eaae3658b230ed4a56d",
           "path": ".agents/skills/capture-context/SKILL.md",
           "treatment": "adapted context paths; retained generic procedure"
-        }
-      ]
-    },
-    {
-      "name": "cloudflare-domain-buyer",
-      "group": "Infrastructure",
-      "description": "Plan and carry out an explicitly scoped Cloudflare domain registration using current availability, price and renewal terms.",
-      "path": ".agents/skills/cloudflare-domain-buyer/SKILL.md",
-      "sources": [
-        {
-          "repo": "OXYGEN-CRO/gtm-vault",
-          "revision": "12accb49fb765597537768466b8bf7c59af250c0",
-          "path": "skills/cloudflare-domain-buyer/SKILL.md",
-          "treatment": "rewritten for current kit; client data and stale commands removed"
         }
       ]
     },
@@ -279,6 +251,150 @@
       ]
     },
     {
+      "name": "oxygen-deliverability",
+      "group": "OXYGEN",
+      "description": "Diagnose OXYGEN sender health from bounce, authentication, warmup and run evidence, then apply only the requested bounded remediation.",
+      "path": ".agents/skills/oxygen-deliverability/SKILL.md",
+      "sources": [
+        {
+          "distribution": "OXYGEN CLI skill catalog",
+          "command": "oxygen skills get oxygen-deliverability --json",
+          "retrieved": "2026-09-14",
+          "cli_version": "1.927.2",
+          "source_content_sha256": "219186ce9b41c9c8aa3238c3c1dc922fad7630d181897fe0351c6af332eacdcf",
+          "treatment": "adapted for this kit; private provenance markers, vendor runbooks and unavailable local references excluded"
+        }
+      ]
+    },
+    {
+      "name": "oxygen-diagnostics",
+      "group": "OXYGEN",
+      "description": "Trace OXYGEN cells and runs, explain failures or credit spend, and plan reconciled retries from native provenance.",
+      "path": ".agents/skills/oxygen-diagnostics/SKILL.md",
+      "sources": [
+        {
+          "distribution": "OXYGEN CLI skill catalog",
+          "command": "oxygen skills get oxygen-diagnostics --json",
+          "retrieved": "2026-09-14",
+          "cli_version": "1.927.2",
+          "source_content_sha256": "fa131101d22d543dab0e6f06711ef8558b485a28f15ddf71453a10ce2e1ca1f5",
+          "treatment": "adapted for this kit; private provenance markers, vendor runbooks and unavailable local references excluded"
+        }
+      ]
+    },
+    {
+      "name": "oxygen-email-infra",
+      "group": "OXYGEN",
+      "description": "Set up and inspect OXYGEN sender profiles, domains, mailboxes, authentication, warmup and Sequence attachment using native previews.",
+      "path": ".agents/skills/oxygen-email-infra/SKILL.md",
+      "sources": [
+        {
+          "distribution": "OXYGEN CLI skill catalog",
+          "command": "oxygen skills get oxygen-email-infra --json",
+          "retrieved": "2026-09-14",
+          "cli_version": "1.927.2",
+          "source_content_sha256": "74d3300c05638e67c928e32a2c11d4a223b5f16c6638876f5059ab34151b3e6f",
+          "treatment": "adapted for this kit; private provenance markers, vendor runbooks and unavailable local references excluded"
+        }
+      ]
+    },
+    {
+      "name": "oxygen-gtm",
+      "group": "OXYGEN",
+      "description": "Route a GTM outcome to the correct OXYGEN primitive and select the narrower bundled skill for hosted execution.",
+      "path": ".agents/skills/oxygen-gtm/SKILL.md",
+      "sources": [
+        {
+          "distribution": "OXYGEN CLI skill catalog",
+          "command": "oxygen skills get oxygen-gtm --json",
+          "retrieved": "2026-09-14",
+          "cli_version": "1.927.2",
+          "source_content_sha256": "e35c2fcac5fca50549d7e5c88748d98b91bf7f4c408db4076a0521617c3bb158",
+          "treatment": "adapted for this kit; private provenance markers, vendor runbooks and unavailable local references excluded"
+        }
+      ]
+    },
+    {
+      "name": "oxygen-knowledge",
+      "group": "OXYGEN",
+      "description": "Read and maintain OXYGEN Knowledge pages, sources, revisions and approved context so GTM functions use traceable company knowledge.",
+      "path": ".agents/skills/oxygen-knowledge/SKILL.md",
+      "sources": [
+        {
+          "distribution": "OXYGEN CLI skill catalog",
+          "command": "oxygen skills get oxygen-knowledge --json",
+          "retrieved": "2026-09-14",
+          "cli_version": "1.927.2",
+          "source_content_sha256": "0311432ca5cce6330c5dfd10f65a24db9e7cde56c84b019d1bf40b1aea545413",
+          "treatment": "adapted for this kit; private provenance markers, vendor runbooks and unavailable local references excluded"
+        }
+      ]
+    },
+    {
+      "name": "oxygen-linkedin-marketing",
+      "group": "OXYGEN",
+      "description": "Run OXYGEN LinkedIn content and warm-signal motions through Posts, Publishing, Signals, Tables and bounded Sequences.",
+      "path": ".agents/skills/oxygen-linkedin-marketing/SKILL.md",
+      "sources": [
+        {
+          "distribution": "OXYGEN CLI skill catalog",
+          "command": "oxygen skills get oxygen-linkedin-marketing --json",
+          "retrieved": "2026-09-14",
+          "cli_version": "1.927.2",
+          "source_content_sha256": "7b2fc6139875e6ce9eb4a34724f2838a54cf415719a07d9c465863f6d0ce2cc3",
+          "treatment": "adapted for this kit; private provenance markers, vendor runbooks and unavailable local references excluded"
+        }
+      ]
+    },
+    {
+      "name": "oxygen-quickstart",
+      "group": "OXYGEN",
+      "description": "Connect this kit to an OXYGEN workspace, inspect capabilities and complete a small hosted demonstration without paid execution.",
+      "path": ".agents/skills/oxygen-quickstart/SKILL.md",
+      "sources": [
+        {
+          "distribution": "OXYGEN CLI skill catalog",
+          "command": "oxygen skills get oxygen-quickstart --json",
+          "retrieved": "2026-09-14",
+          "cli_version": "1.927.2",
+          "source_content_sha256": "ee8b12bd5a9da3c0b3392af996692e54b8a5b897df4db565e222474dc88c85ef",
+          "treatment": "adapted for this kit; private provenance markers, vendor runbooks and unavailable local references excluded"
+        }
+      ]
+    },
+    {
+      "name": "oxygen-recipes",
+      "group": "OXYGEN",
+      "description": "Find and inspect a versioned OXYGEN business play, preflight its resources and adapt it to the reader's GTM goal.",
+      "path": ".agents/skills/oxygen-recipes/SKILL.md",
+      "sources": [
+        {
+          "distribution": "OXYGEN CLI skill catalog",
+          "command": "oxygen skills get oxygen-recipes --json",
+          "retrieved": "2026-09-14",
+          "cli_version": "1.927.2",
+          "source_content_sha256": "7041428b88f70338bf769985bf658521681af2c06a01ac9fb6a107836346864c",
+          "treatment": "adapted for this kit; private provenance markers, vendor runbooks and unavailable local references excluded"
+        }
+      ]
+    },
+    {
+      "name": "oxygen-sequencer",
+      "group": "OXYGEN",
+      "description": "Operate native OXYGEN Sequences for new conversations and outreach cadence, including sender readiness, previews, enrollment, dispatch and recovery.",
+      "path": ".agents/skills/oxygen-sequencer/SKILL.md",
+      "sources": [
+        {
+          "distribution": "OXYGEN CLI skill catalog",
+          "command": "oxygen skills get oxygen-sequencer --json",
+          "retrieved": "2026-09-14",
+          "cli_version": "1.927.2",
+          "source_content_sha256": "a9218e1d989b1acad44ad65a226c2da37f45a575556329bc85a33cb07d595f4f",
+          "treatment": "adapted for this kit; private provenance markers, vendor runbooks and unavailable local references excluded"
+        }
+      ]
+    },
+    {
       "name": "oxygen-sequencer-enroll",
       "group": "GTM",
       "description": "Prepare a reviewed, verified cohort for a native OXYGEN Sequence and execute only the user's authorized enrollment and sending scope.",
@@ -289,6 +405,54 @@
           "revision": "12accb49fb765597537768466b8bf7c59af250c0",
           "path": "skills/oxygen-sequencer-enroll/SKILL.md",
           "treatment": "rewritten for current kit; client data and stale commands removed"
+        }
+      ]
+    },
+    {
+      "name": "oxygen-table-tidy",
+      "group": "OXYGEN",
+      "description": "Inspect and improve OXYGEN Table structure, visibility and formatting while preserving raw data, dependencies and record identity.",
+      "path": ".agents/skills/oxygen-table-tidy/SKILL.md",
+      "sources": [
+        {
+          "distribution": "OXYGEN CLI skill catalog",
+          "command": "oxygen skills get oxygen-table-tidy --json",
+          "retrieved": "2026-09-14",
+          "cli_version": "1.927.2",
+          "source_content_sha256": "c1301fd059465976e660ab7d1bc92ee1490879e4c992b74be89c69cfd9bbd4e0",
+          "treatment": "adapted for this kit; private provenance markers, vendor runbooks and unavailable local references excluded"
+        }
+      ]
+    },
+    {
+      "name": "oxygen-unibox",
+      "group": "OXYGEN",
+      "description": "Triage OXYGEN Messages and Unibox conversations, prepare grounded replies and send only within the user's specified account and thread scope.",
+      "path": ".agents/skills/oxygen-unibox/SKILL.md",
+      "sources": [
+        {
+          "distribution": "OXYGEN CLI skill catalog",
+          "command": "oxygen skills get oxygen-unibox --json",
+          "retrieved": "2026-09-14",
+          "cli_version": "1.927.2",
+          "source_content_sha256": "88422c7caae2c30178293bd1226e14896bf781a6beb248db8cdeeb8f35a8ca2b",
+          "treatment": "adapted for this kit; private provenance markers, vendor runbooks and unavailable local references excluded"
+        }
+      ]
+    },
+    {
+      "name": "oxygen-workflow-authoring",
+      "group": "OXYGEN",
+      "description": "Author, validate and operate deterministic OXYGEN Workflows with explicit inputs, hosted runs, current schemas and inspectable effects.",
+      "path": ".agents/skills/oxygen-workflow-authoring/SKILL.md",
+      "sources": [
+        {
+          "distribution": "OXYGEN CLI skill catalog",
+          "command": "oxygen skills get oxygen-workflow-authoring --json",
+          "retrieved": "2026-09-14",
+          "cli_version": "1.927.2",
+          "source_content_sha256": "3a4bff0ccc578d61facf353dfc3cdb6934edfcb7ff4bb9a2b6f4eb6274b260bd",
+          "treatment": "adapted for this kit; private provenance markers, vendor runbooks and unavailable local references excluded"
         }
       ]
     },
@@ -589,20 +753,6 @@
           "revision": "848abc38d4b733ebf704f5c5ff8486f3e2908412",
           "path": "skills/youtube-thumbnail/SKILL.md",
           "treatment": "rewritten portable procedure; no missing helper claims"
-        }
-      ]
-    },
-    {
-      "name": "zapmail-inbox-setup",
-      "group": "Infrastructure",
-      "description": "Plan and provision an explicitly requested sender setup through ZapMail or the connected mailbox provider, with verified account, DNS and recurring cost.",
-      "path": ".agents/skills/zapmail-inbox-setup/SKILL.md",
-      "sources": [
-        {
-          "repo": "OXYGEN-CRO/gtm-vault",
-          "revision": "12accb49fb765597537768466b8bf7c59af250c0",
-          "path": "skills/zapmail-inbox-setup/SKILL.md",
-          "treatment": "rewritten for current kit; client data and stale commands removed"
         }
       ]
     }

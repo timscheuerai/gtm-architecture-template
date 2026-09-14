@@ -7,6 +7,8 @@ description: Prepare a reviewed, verified cohort for a native OXYGEN Sequence an
 
 Read [composition](../../../docs/composition.md), [runtime contract](../../../docs/runtime-contract.md) and the `prepare_sequence` definition. Discover the installed CLI's Sequence operations and schemas; older generic create/start examples are not authoritative.
 
+Use [oxygen-sequencer](../oxygen-sequencer/SKILL.md) for native definition, lifecycle and dispatch controls. This skill is the kit-specific adapter from `prepare_sequence` into enrollment.
+
 Inspect the exact Sequence, recipient cohort, sender identity, channel, steps, schedule/time zone, reply stops, suppression and current capacity. Use observed sender health and configured limits. Do not substitute a universal sends-per-day number.
 
 Every row needs independent company/persona gates, current valid email verification, an explicitly reviewed message, clear suppression state and frozen experiment IDs. Run `prepare_sequence` for the selected rows; held rows keep their reasons.

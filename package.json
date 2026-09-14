@@ -1,9 +1,9 @@
 {
   "name": "gtm-architecture-template",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
-  "description": "One GTM starter kit: company context, 42 reusable agent skills, 13 function templates and a synthetic first-batch demo.",
+  "description": "One GTM starter kit: company context, 51 reusable agent skills, 13 function templates and a synthetic first-batch demo.",
   "engines": {
     "node": ">=22"
   },

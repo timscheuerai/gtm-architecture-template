@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.0 · 2026-09-14
+
+- Removed Boomerang sourcing, ZapMail inbox setup and Cloudflare domain-buying skills.
+- Added 12 native OXYGEN skills for setup, GTM routing, Knowledge, Recipes, Workflows, Sequences, Unibox, LinkedIn marketing, email infrastructure, deliverability, diagnostics and table cleanup.
+- Connected the new skills to the existing functions and added a guide with concrete operator prompts.
+- Updated the catalog to 51 skills while keeping all 13 function templates and the no-account demo.
+
 ## 0.2.0 · 2026-09-14
 
 - Centralized 42 GTM, context, content, visual, media and infrastructure skills in one shared library for repository use.

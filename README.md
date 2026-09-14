@@ -26,7 +26,7 @@ The demo runs the six deterministic functions using synthetic research, scores, 
 |---|---|
 | [Company brief and rubrics](company) | One buyer, useful offer, independent fit gates and exclusions |
 | [13 function templates](docs/oxygen-setup.md#the-functions) | Source intake, research, scoring, priority queues, contact lookup, test assignment, copy, readiness and results |
-| [42 agent skills](docs/skills.md) | Guided GTM work, content, visuals and optional media/infrastructure procedures |
+| [51 agent skills](docs/skills.md) | Guided GTM work, native OXYGEN operations, content, visuals and optional media |
 | [Blank context workspace](context/index.md) | Your audience, voice, source material, strategy and cleared proof |
 | [Worked example](examples/demo/report.md) | Inspectable decisions and held rows before you connect tools |
 | [Experiment and learning templates](company/experiment.example.json) | Frozen variants, outcome definitions and reviewed next changes |
@@ -46,13 +46,15 @@ The functions are modular. [Composition](docs/composition.md) explains how to ma
 
 **Install the hosted functions.** Follow [OXYGEN setup](docs/oxygen-setup.md). It requires an OXYGEN account and CLI; provider/model runs have separate costs. Inspect a one-row preview and calibrate before a live batch.
 
+**Operate the system in OXYGEN.** Use [the 12 additional OXYGEN skills](docs/oxygen-skills.md) for Knowledge, Recipes, Workflows, Sequences, inbox, LinkedIn marketing, sender setup, deliverability, diagnostics and table cleanup. The guide includes concrete prompts for each stage.
+
 ## One shared skills library
 
 The canonical files live in [.agents/skills](.agents/skills). Claude Code uses the same files through `.claude/skills`. Open the repo as your workspace and ask for a skill by name. Run `npm run skills` for the catalog.
 
 If your ZIP extractor or Git configuration materializes the Claude link as a text file, run `npm run skills:claude` to repair it. No global skill installation is required. Moving only a SKILL.md into another project can break its context and function references; keep the kit together.
 
-The [catalog](docs/skills.md) separates the core journey from optional content, video and infrastructure work. Flowchart helpers are bundled; media renderers, provider clients and subscriptions are external prerequisites. Skills are instructions for an agent, not proof that each external integration has been tested.
+The [catalog](docs/skills.md) groups GTM, OXYGEN, content and media skills by job. Flowchart helpers are bundled; media renderers and service subscriptions are separate prerequisites. Skills are instructions for an agent, not proof that each external integration has been tested.
 
 ## Make it yours
 

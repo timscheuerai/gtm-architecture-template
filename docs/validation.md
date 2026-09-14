@@ -35,3 +35,12 @@ Reproduce the local checks with `npm run build`, `npm test`, `npm run check:kit`
 - Skill procedures were reviewed for private client examples, machine paths, stale prices and missing-script claims. The copied flowchart helpers are portable Python source; visual rendering still requires an editor and inspection.
 
 These are package and deterministic behavior checks. They do not claim end-to-end execution of all 42 skills, successful model calibration, video rendering, provider provisioning, content publishing or a live outbound pilot. The hosted function definitions are unchanged from v0.1.0's dev validation above.
+
+## OXYGEN expansion · v0.3.0
+
+- All 51 current skills passed frontmatter validation and package checks after the three vendor-specific skills were removed and twelve OXYGEN skills added.
+- The new procedures were adapted from live `skills get` results using CLI 1.927.2 against dev API 1.978.7. Referenced command descriptors for Knowledge, Recipes, workflow schemas, skill retrieval and table tidy were inspected without running paid work.
+- Private provenance markers, signed access URLs and unbundled vendor runbook references were excluded from the public skills and catalog. The catalog retains hashes of the source content after its workspace marker is removed.
+- All 18 tests, the 19-page context check, offline demo and shared Claude discovery check passed. Function sources and generated hosted definitions remain unchanged.
+
+This release verifies the package and current discovery surfaces. It does not claim live execution of the added operational skills or a completed outbound campaign.

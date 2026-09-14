@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { root, json } from './lib.mjs';
 
 const catalog = json('skills/catalog.json').skills;
-const groups = ['Start','Context','GTM','Content','Visuals','Media','Infrastructure'];
+const groups = ['Start','Context','GTM','OXYGEN','Content','Visuals','Media'];
 const args = process.argv.slice(2);
 try {
   if (args.length > 1 || args.length === 1 && !['--build','--claude'].includes(args[0])) throw new Error('Usage: npm run skills -- [--build|--claude]');
@@ -23,7 +23,7 @@ try {
     if (!existsSync(link)) symlinkSync(process.platform === 'win32' ? source : '../.agents/skills',link,process.platform === 'win32' ? 'junction' : 'dir');
     console.log('Claude Code and the kit use the same .agents/skills directory.');
   } else if (args[0] === '--build') {
-    let doc = `# Skills catalog\n\n${catalog.length} skills share one library in .agents/skills/. Open the whole repository in your coding agent and ask for a skill by name. Context and function references are part of the package; these skills are not standalone single-file installs.\n\nStart with **gtm-start** for an account batch, or **setup-workspace → capture-context → voice-calibration → linkedin-copywriter** for content. You do not need to configure every skill before starting.\n\nThe offline demo needs Node.js 22+. Hosted functions need an OXYGEN account and CLI. Flowchart helpers and context checks use Python 3. Video renderers, image tools, QMD, Notion, YouTube, registrar and mailbox connections are optional and not installed by this kit. Provider procedures discover the actual current tool/schema before operating.\n\n`;
+    let doc = `# Skills catalog\n\n${catalog.length} skills share one library in .agents/skills/. Open the whole repository in your coding agent and ask for a skill by name. Context and function references are part of the package; these skills are not standalone single-file installs.\n\nStart with **gtm-start** for an account batch, or **setup-workspace → capture-context → voice-calibration → linkedin-copywriter** for content. You do not need to configure every skill before starting.\n\nThe offline demo needs Node.js 22+. Hosted functions need an OXYGEN account and CLI. Flowchart helpers and context checks use Python 3. Video renderers, image tools, QMD, Notion, YouTube and OXYGEN sender connections are optional and not installed by this kit. Provider procedures discover the actual current tool/schema before operating.\n\n`;
     for (const group of groups) {
       doc += `## ${group}\n\n| Skill | Use it for |\n|---|---|\n`;
       for (const item of catalog.filter(s => s.group === group)) doc += `| [${item.name}](../${item.path}) | ${item.description.replaceAll('|','\\|')} |\n`;

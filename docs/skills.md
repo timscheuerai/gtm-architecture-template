@@ -1,10 +1,10 @@
 # Skills catalog
 
-42 skills share one library in .agents/skills/. Open the whole repository in your coding agent and ask for a skill by name. Context and function references are part of the package; these skills are not standalone single-file installs.
+51 skills share one library in .agents/skills/. Open the whole repository in your coding agent and ask for a skill by name. Context and function references are part of the package; these skills are not standalone single-file installs.
 
 Start with **gtm-start** for an account batch, or **setup-workspace → capture-context → voice-calibration → linkedin-copywriter** for content. You do not need to configure every skill before starting.
 
-The offline demo needs Node.js 22+. Hosted functions need an OXYGEN account and CLI. Flowchart helpers and context checks use Python 3. Video renderers, image tools, QMD, Notion, YouTube, registrar and mailbox connections are optional and not installed by this kit. Provider procedures discover the actual current tool/schema before operating.
+The offline demo needs Node.js 22+. Hosted functions need an OXYGEN account and CLI. Flowchart helpers and context checks use Python 3. Video renderers, image tools, QMD, Notion, YouTube and OXYGEN sender connections are optional and not installed by this kit. Provider procedures discover the actual current tool/schema before operating.
 
 ## Start
 
@@ -25,7 +25,6 @@ The offline demo needs Node.js 22+. Hosted functions need an OXYGEN account and 
 
 | Skill | Use it for |
 |---|---|
-| [boomerang-lead-sourcing](../.agents/skills/boomerang-lead-sourcing/SKILL.md) | Turn a user-supplied Apollo or Boomerang export into a narrowly defined, auditable account batch for OXYGEN. |
 | [crm-presync-check](../.agents/skills/crm-presync-check/SKILL.md) | Check an OXYGEN cohort against the connected CRM and produce existing, new, ambiguous or failed lookup decisions before a sync. |
 | [lead-sourcing](../.agents/skills/lead-sourcing/SKILL.md) | Translate an ICP into comparable account and contact searches, build a bounded first batch and preserve provider filters and provenance. |
 | [outbound-copywriter](../.agents/skills/outbound-copywriter/SKILL.md) | Write a grounded first touch or follow-up from the buyer's situation, a real offer, cleared proof and the sender's own voice. |
@@ -35,6 +34,23 @@ The offline demo needs Node.js 22+. Hosted functions need an OXYGEN account and 
 | [signals-sweep](../.agents/skills/signals-sweep/SKILL.md) | Collect a bounded batch of hiring, engagement or other account signals with source dates, deduplication and explicit qualification rules. |
 | [spin-tags](../.agents/skills/spin-tags/SKILL.md) | Add optional wording variants to static copy using the actual sender's supported syntax while preserving meaning, merge variables and experiment control. |
 | [split-test-designer](../.agents/skills/split-test-designer/SKILL.md) | Define one interpretable outbound experiment with frozen account-level assignment, copy versions and outcome measures. |
+
+## OXYGEN
+
+| Skill | Use it for |
+|---|---|
+| [oxygen-deliverability](../.agents/skills/oxygen-deliverability/SKILL.md) | Diagnose OXYGEN sender health from bounce, authentication, warmup and run evidence, then apply only the requested bounded remediation. |
+| [oxygen-diagnostics](../.agents/skills/oxygen-diagnostics/SKILL.md) | Trace OXYGEN cells and runs, explain failures or credit spend, and plan reconciled retries from native provenance. |
+| [oxygen-email-infra](../.agents/skills/oxygen-email-infra/SKILL.md) | Set up and inspect OXYGEN sender profiles, domains, mailboxes, authentication, warmup and Sequence attachment using native previews. |
+| [oxygen-gtm](../.agents/skills/oxygen-gtm/SKILL.md) | Route a GTM outcome to the correct OXYGEN primitive and select the narrower bundled skill for hosted execution. |
+| [oxygen-knowledge](../.agents/skills/oxygen-knowledge/SKILL.md) | Read and maintain OXYGEN Knowledge pages, sources, revisions and approved context so GTM functions use traceable company knowledge. |
+| [oxygen-linkedin-marketing](../.agents/skills/oxygen-linkedin-marketing/SKILL.md) | Run OXYGEN LinkedIn content and warm-signal motions through Posts, Publishing, Signals, Tables and bounded Sequences. |
+| [oxygen-quickstart](../.agents/skills/oxygen-quickstart/SKILL.md) | Connect this kit to an OXYGEN workspace, inspect capabilities and complete a small hosted demonstration without paid execution. |
+| [oxygen-recipes](../.agents/skills/oxygen-recipes/SKILL.md) | Find and inspect a versioned OXYGEN business play, preflight its resources and adapt it to the reader's GTM goal. |
+| [oxygen-sequencer](../.agents/skills/oxygen-sequencer/SKILL.md) | Operate native OXYGEN Sequences for new conversations and outreach cadence, including sender readiness, previews, enrollment, dispatch and recovery. |
+| [oxygen-table-tidy](../.agents/skills/oxygen-table-tidy/SKILL.md) | Inspect and improve OXYGEN Table structure, visibility and formatting while preserving raw data, dependencies and record identity. |
+| [oxygen-unibox](../.agents/skills/oxygen-unibox/SKILL.md) | Triage OXYGEN Messages and Unibox conversations, prepare grounded replies and send only within the user's specified account and thread scope. |
+| [oxygen-workflow-authoring](../.agents/skills/oxygen-workflow-authoring/SKILL.md) | Author, validate and operate deterministic OXYGEN Workflows with explicit inputs, hosted runs, current schemas and inspectable effects. |
 
 ## Content
 
@@ -75,13 +91,6 @@ The offline demo needs Node.js 22+. Hosted functions need an OXYGEN account and 
 | [youtube-publisher](../.agents/skills/youtube-publisher/SKILL.md) | Upload or update a video on the user's confirmed YouTube channel with verified metadata, processing state and requested visibility. |
 | [youtube-script](../.agents/skills/youtube-script/SKILL.md) | Write a recordable YouTube script with a clear viewer promise, evidence, demo beats and a truthful payoff. |
 | [youtube-thumbnail](../.agents/skills/youtube-thumbnail/SKILL.md) | Design a legible YouTube thumbnail whose visual promise is supported by the actual video. |
-
-## Infrastructure
-
-| Skill | Use it for |
-|---|---|
-| [cloudflare-domain-buyer](../.agents/skills/cloudflare-domain-buyer/SKILL.md) | Plan and carry out an explicitly scoped Cloudflare domain registration using current availability, price and renewal terms. |
-| [zapmail-inbox-setup](../.agents/skills/zapmail-inbox-setup/SKILL.md) | Plan and provision an explicitly requested sender setup through ZapMail or the connected mailbox provider, with verified account, DNS and recurring cost. |
 
 ## Consolidation
 

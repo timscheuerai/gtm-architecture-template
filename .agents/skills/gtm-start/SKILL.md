@@ -11,7 +11,7 @@ Read the root README, [the first-batch guide](../../../docs/first-batch.md), [th
 2. Run `npm run demo` to inspect the synthetic pipeline. Explain the account gate, persona gate, capacity hold and unreviewed messages. Research, scores, verification and copy in this demo are fixtures.
 3. Save real company inputs under ignored `company/private/`, based on the examples. Fill audience, voice and public proof in `context/` only from supplied sources. Treat a populated fork as private working material.
 4. Use `lead-sourcing` for ten known accounts and `split-test-designer` to freeze one test. Use `outbound-copywriter` for one concrete message before generating a batch.
-5. For hosted execution, read [the OXYGEN setup](../../../docs/oxygen-setup.md). Show the setup plan, apply within the user's requested scope, inspect one row and calibrate scoring before paid batch execution.
+5. For hosted execution, use [oxygen-quickstart](../oxygen-quickstart/SKILL.md) and read [the OXYGEN setup](../../../docs/oxygen-setup.md). Show the setup plan, apply within the user's requested scope, inspect one row and calibrate scoring before paid batch execution. Use [the OXYGEN skill guide](../../../docs/oxygen-skills.md) for context, composition, delivery and operation.
 6. Use `linkedin-copywriter` to explain one supported learning or `lead-magnet-creator` to turn an actual deliverable into an asset. A sample/demo result is never customer proof.
 
 Deliver the brief, accepted/held account counts with reasons, one reviewed draft, test plan and next unresolved mapping. Distinguish a local simulation, hosted preview and live result. Installing this kit does not connect the full campaign.
