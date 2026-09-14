@@ -1,0 +1,104 @@
+{
+  "id": "prioritise_contacts",
+  "description": "Select qualified contacts within capacity using fit and fresh intent.",
+  "runtime": "workflow",
+  "source": "functions/prioritise.mjs",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "candidates": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "company_threshold": {
+        "type": "number"
+      },
+      "persona_threshold": {
+        "type": "number"
+      },
+      "capacity": {
+        "type": "integer"
+      },
+      "max_signal_age_days": {
+        "type": "number"
+      },
+      "mode": {
+        "type": "string"
+      },
+      "as_of_ms": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "candidates",
+      "company_threshold",
+      "persona_threshold",
+      "capacity",
+      "as_of_ms",
+      "max_signal_age_days",
+      "mode"
+    ],
+    "additionalProperties": false
+  },
+  "defaults": {
+    "mode": "contacts"
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "selected": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "priority": {
+              "type": "number"
+            },
+            "intent_score": {
+              "type": "number"
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "priority",
+            "intent_score",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "held": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "selected",
+      "held"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "id": "prepare_sequence",
+  "description": "Check fit, verification, review and capacity before the native Sequence handoff; does not send.",
+  "runtime": "workflow",
+  "source": "functions/prepare_sequence.mjs",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "company_threshold": {
+        "type": "number"
+      },
+      "persona_threshold": {
+        "type": "number"
+      },
+      "company_score": {
+        "type": "number"
+      },
+      "persona_score": {
+        "type": "number"
+      },
+      "email": {
+        "type": "string"
+      },
+      "email_status": {
+        "type": "string"
+      },
+      "max_verification_age_days": {
+        "type": "number"
+      },
+      "reviewed": {
+        "type": "boolean"
+      },
+      "suppressed": {
+        "type": "boolean"
+      },
+      "remaining_capacity": {
+        "type": "integer"
+      },
+      "sequence_id": {
+        "type": "string"
+      },
+      "test_round": {
+        "type": "string"
+      },
+      "group_id": {
+        "type": "string"
+      },
+      "variant_id": {
+        "type": "string"
+      },
+      "prompt_version": {
+        "type": "string"
+      },
+      "subject": {
+        "type": "string"
+      },
+      "body": {
+        "type": "string"
+      },
+      "as_of_ms": {
+        "type": "number"
+      },
+      "verified_at_ms": {
+        "type": "number"
+      },
+      "company_disqualified": {
+        "type": "boolean"
+      },
+      "persona_disqualified": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "company_threshold",
+      "persona_threshold",
+      "company_score",
+      "persona_score",
+      "email",
+      "email_status",
+      "verified_at_ms",
+      "as_of_ms",
+      "max_verification_age_days",
+      "reviewed",
+      "suppressed",
+      "remaining_capacity",
+      "sequence_id",
+      "test_round",
+      "group_id",
+      "variant_id",
+      "prompt_version",
+      "subject",
+      "body",
+      "company_disqualified",
+      "persona_disqualified"
+    ],
+    "additionalProperties": false
+  },
+  "defaults": {},
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "ready": {
+        "type": "boolean"
+      },
+      "reasons": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "sequence_id": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string"
+      },
+      "subject": {
+        "type": "string"
+      },
+      "body": {
+        "type": "string"
+      },
+      "test_round": {
+        "type": "string"
+      },
+      "group_id": {
+        "type": "string"
+      },
+      "variant_id": {
+        "type": "string"
+      },
+      "prompt_version": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "ready",
+      "reasons",
+      "sequence_id",
+      "email",
+      "subject",
+      "body",
+      "test_round",
+      "group_id",
+      "variant_id",
+      "prompt_version"
+    ],
+    "additionalProperties": false
+  }
+}

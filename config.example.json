@@ -1,0 +1,10 @@
+{
+  "prefix": "gtm-architecture",
+  "max_items": 10,
+  "callable_credit_ceiling": 100,
+  "company_threshold": 70,
+  "persona_threshold": 70,
+  "capacity": 5,
+  "max_signal_age_days": 30,
+  "max_verification_age_days": 7
+}

@@ -1,0 +1,45 @@
+{
+  "id": "score_company_icp",
+  "description": "Apply an explicit company rubric to supplied evidence; return score and reasons.",
+  "runtime": "table",
+  "kind": "ai",
+  "inputs": {
+    "company_evidence": "jsonb",
+    "icp_rubric": "text"
+  },
+  "prompt": "prompts/score_company_icp.md",
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "score": {
+        "type": "number"
+      },
+      "reason": {
+        "type": "string"
+      },
+      "disqualified": {
+        "type": "boolean"
+      },
+      "missing": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "evidence_used": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "score",
+      "reason",
+      "disqualified",
+      "missing",
+      "evidence_used"
+    ],
+    "additionalProperties": false
+  }
+}

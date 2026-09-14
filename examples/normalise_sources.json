@@ -1,0 +1,25 @@
+{
+  "records": [
+    {
+      "id": "signal-1",
+      "company_domain": "https://www.company-0.example/about",
+      "source": "hiring-feed",
+      "signal_type": "sales_hire",
+      "observed_at_ms": 1789257600000
+    },
+    {
+      "id": "signal-2",
+      "company_domain": "company-0.example",
+      "source": "post-engagers",
+      "signal_type": "comment",
+      "observed_at_ms": 1789344000000
+    },
+    {
+      "id": "invalid",
+      "company_domain": "unknown",
+      "source": "manual",
+      "signal_type": "list",
+      "observed_at_ms": -1
+    }
+  ]
+}

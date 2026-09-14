@@ -1,0 +1,18 @@
+{
+  "id": "enrich_contact_details",
+  "description": "Native work-email waterfall with verification, after company and persona qualification.",
+  "runtime": "enrichment",
+  "inputs": {
+    "full_name": "text",
+    "company_domain": "text",
+    "linkedin_url": "text"
+  },
+  "capability": "work_email",
+  "provider_order": [
+    "blitzapi",
+    "icypeas",
+    "ai_ark"
+  ],
+  "profile": "linkedin_url",
+  "note": "Provider definitions and prices are resolved through the installed CLI during setup. Only valid results should pass to prepare_sequence. Phone is optional and separately previewed."
+}

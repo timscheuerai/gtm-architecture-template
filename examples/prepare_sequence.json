@@ -1,0 +1,23 @@
+{
+  "company_threshold": 70,
+  "persona_threshold": 70,
+  "company_score": 100,
+  "persona_score": 100,
+  "email": "alex@company-0.example",
+  "email_status": "valid",
+  "max_verification_age_days": 7,
+  "reviewed": false,
+  "suppressed": false,
+  "remaining_capacity": 5,
+  "sequence_id": "replace-with-your-sequence-id",
+  "test_round": "cta-001",
+  "group_id": "b2b-saas-revops",
+  "variant_id": "A",
+  "prompt_version": "first-touch-v1",
+  "subject": "Your outbound workflow",
+  "body": "Example draft \u2014 replace with your reviewed message.",
+  "as_of_ms": 1789387200000,
+  "verified_at_ms": 1789344000000,
+  "company_disqualified": false,
+  "persona_disqualified": false
+}

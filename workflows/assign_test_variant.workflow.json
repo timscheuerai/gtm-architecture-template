@@ -1,0 +1,138 @@
+{
+  "manifest_version": 2,
+  "workflow": {
+    "id": "gtm-architecture-assign-test-variant",
+    "name": "assign_test_variant",
+    "status": "disabled"
+  },
+  "trigger": {
+    "type": "api",
+    "status": "disabled"
+  },
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "account_key": {
+        "type": "string"
+      },
+      "test_round": {
+        "type": "string"
+      },
+      "group_id": {
+        "type": "string"
+      },
+      "prompt_version": {
+        "type": "string"
+      },
+      "variants": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "account_key",
+      "test_round",
+      "group_id",
+      "prompt_version",
+      "variants"
+    ],
+    "additionalProperties": false
+  },
+  "nodes": [
+    {
+      "id": "trigger",
+      "name": "Function input",
+      "kind": "trigger",
+      "ui": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "execute",
+      "name": "assign_test_variant",
+      "description": "Stable company-level A/B assignment within a frozen test round.",
+      "kind": "code",
+      "ui": {
+        "x": 320,
+        "y": 0
+      },
+      "code": {
+        "version": 1,
+        "language": "javascript",
+        "runtime": "oxygen-js-v1",
+        "source": "(inputs) => { const input = inputs;\n  const { account_key, test_round, group_id, prompt_version, variants } = input;\n  for (const [key, value] of Object.entries({account_key,test_round,group_id,prompt_version})) if (typeof value !== 'string' || !value.trim()) throw new Error(key + ' is required.');\n  if (!Array.isArray(variants) || variants.length !== 2 || variants.some(v => typeof v !== 'string' || !v.trim()) || variants[0] === variants[1]) throw new Error('Exactly two distinct variant IDs are required.');\n  // Frozen, deterministic FNV-1a bucketing. The company is the randomisation unit:\n  // colleagues in one account receive the same treatment. Never change salt/order mid-round.\n  const key = JSON.stringify([test_round.trim(), group_id.trim(), account_key.trim().toLowerCase().replace(/^www\\./, '')]);\n  let hash = 2166136261;\n  for (let i = 0; i < key.length; i++) { hash ^= key.charCodeAt(i); hash = Math.imul(hash, 16777619) >>> 0; }\n  return { test_round, group_id, variant_id: variants[hash % 2], prompt_version, assignment_key: key, algorithm: 'fnv1a-account-v1' };\n}",
+        "inputs": {
+          "account_key": {
+            "type": "ref",
+            "path": "trigger.input.account_key"
+          },
+          "test_round": {
+            "type": "ref",
+            "path": "trigger.input.test_round"
+          },
+          "group_id": {
+            "type": "ref",
+            "path": "trigger.input.group_id"
+          },
+          "prompt_version": {
+            "type": "ref",
+            "path": "trigger.input.prompt_version"
+          },
+          "variants": {
+            "type": "ref",
+            "path": "trigger.input.variants"
+          }
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "test_round": {
+              "type": "string"
+            },
+            "group_id": {
+              "type": "string"
+            },
+            "variant_id": {
+              "type": "string"
+            },
+            "prompt_version": {
+              "type": "string"
+            },
+            "assignment_key": {
+              "type": "string"
+            },
+            "algorithm": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "test_round",
+            "group_id",
+            "variant_id",
+            "prompt_version",
+            "assignment_key",
+            "algorithm"
+          ],
+          "additionalProperties": false
+        },
+        "limits": {
+          "timeout_ms": 1000,
+          "max_input_bytes": 250000,
+          "max_output_bytes": 250000
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "trigger-execute",
+      "source": "trigger",
+      "target": "execute"
+    }
+  ],
+  "compiler_version": "oxygen-workflows-v2",
+  "source_hash": "b5fb69ab3e522a9d92875854db37738c46d655220dd8cf9948a760391f9c0b95"
+}

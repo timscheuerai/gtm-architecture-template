@@ -1,0 +1,23 @@
+[
+  {
+    "example_id": "persona-1",
+    "person_evidence": {
+      "full_name": "Alex Example",
+      "linkedin_url": null,
+      "company_domain": "company-0.example",
+      "current_title": "Head of Revenue Operations",
+      "department": "Revenue Operations",
+      "seniority": "Head",
+      "responsibilities": "Synthetic fixture: owns the outbound tooling budget.",
+      "sources": [
+        {
+          "url": "https://company-0.example/team",
+          "fact": "Synthetic current role and responsibilities.",
+          "checked_at": "2026-09-14T00:00:00Z"
+        }
+      ],
+      "missing": []
+    },
+    "persona_rubric": "Current revenue/sales operations or GTM engineering remit: 50. Head/director/founder with ownership: 30; hands-on manager: 20. Owns outbound tooling: 20. Wrong employer or former employee: disqualify, score 0. Missing evidence: 0."
+  }
+]

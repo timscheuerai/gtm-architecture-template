@@ -1,0 +1,24 @@
+[
+  {
+    "example_id": "replace-before-live",
+    "linkedin_url": "https://www.linkedin.com/in/replace-with-real-profile",
+    "company_domain": "company-0.example",
+    "known_facts": {
+      "full_name": "Alex Example",
+      "linkedin_url": null,
+      "company_domain": "company-0.example",
+      "current_title": "Head of Revenue Operations",
+      "department": "Revenue Operations",
+      "seniority": "Head",
+      "responsibilities": "Synthetic fixture: owns the outbound tooling budget.",
+      "sources": [
+        {
+          "url": "https://company-0.example/team",
+          "fact": "Synthetic current role and responsibilities.",
+          "checked_at": "2026-09-14T00:00:00Z"
+        }
+      ],
+      "missing": []
+    }
+  }
+]

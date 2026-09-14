@@ -1,0 +1,109 @@
+{
+  "candidates": [
+    {
+      "id": "company-0",
+      "company_score": 100,
+      "persona_score": 90,
+      "signal_strength": 80,
+      "suppressed": false,
+      "observed_at_ms": 1789257600000,
+      "company_disqualified": false,
+      "persona_disqualified": false
+    },
+    {
+      "id": "company-1",
+      "company_score": 100,
+      "persona_score": 90,
+      "signal_strength": 80,
+      "suppressed": false,
+      "observed_at_ms": 1789257600000,
+      "company_disqualified": false,
+      "persona_disqualified": false
+    },
+    {
+      "id": "company-2",
+      "company_score": 100,
+      "persona_score": 31,
+      "signal_strength": 80,
+      "suppressed": false,
+      "observed_at_ms": 1789257600000,
+      "company_disqualified": false,
+      "persona_disqualified": false
+    },
+    {
+      "id": "company-3",
+      "company_score": 100,
+      "persona_score": 90,
+      "signal_strength": 80,
+      "suppressed": false,
+      "observed_at_ms": 1735689600000,
+      "company_disqualified": false,
+      "persona_disqualified": false
+    },
+    {
+      "id": "company-4",
+      "company_score": 75,
+      "persona_score": 90,
+      "signal_strength": 80,
+      "suppressed": false,
+      "observed_at_ms": 1789257600000,
+      "company_disqualified": false,
+      "persona_disqualified": false
+    },
+    {
+      "id": "company-5",
+      "company_score": 80,
+      "persona_score": 90,
+      "signal_strength": 80,
+      "suppressed": false,
+      "observed_at_ms": 1789257600000,
+      "company_disqualified": false,
+      "persona_disqualified": false
+    },
+    {
+      "id": "company-6",
+      "company_score": 100,
+      "persona_score": 90,
+      "signal_strength": 80,
+      "suppressed": true,
+      "observed_at_ms": 1789257600000,
+      "company_disqualified": false,
+      "persona_disqualified": false
+    },
+    {
+      "id": "company-7",
+      "company_score": 0,
+      "persona_score": 90,
+      "signal_strength": 80,
+      "suppressed": false,
+      "observed_at_ms": 1789257600000,
+      "company_disqualified": true,
+      "persona_disqualified": false
+    },
+    {
+      "id": "company-8",
+      "company_score": 0,
+      "persona_score": 90,
+      "signal_strength": 80,
+      "suppressed": false,
+      "observed_at_ms": 1789257600000,
+      "company_disqualified": true,
+      "persona_disqualified": false
+    },
+    {
+      "id": "company-9",
+      "company_score": 0,
+      "persona_score": 90,
+      "signal_strength": 80,
+      "suppressed": false,
+      "observed_at_ms": 1789257600000,
+      "company_disqualified": true,
+      "persona_disqualified": false
+    }
+  ],
+  "company_threshold": 70,
+  "persona_threshold": 70,
+  "capacity": 5,
+  "max_signal_age_days": 30,
+  "as_of_ms": 1789344000000
+}

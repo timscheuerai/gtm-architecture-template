@@ -1,0 +1,70 @@
+{
+  "id": "assign_test_variant",
+  "description": "Stable company-level A/B assignment within a frozen test round.",
+  "runtime": "workflow",
+  "source": "functions/assign_test_variant.mjs",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "account_key": {
+        "type": "string"
+      },
+      "test_round": {
+        "type": "string"
+      },
+      "group_id": {
+        "type": "string"
+      },
+      "prompt_version": {
+        "type": "string"
+      },
+      "variants": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "account_key",
+      "test_round",
+      "group_id",
+      "prompt_version",
+      "variants"
+    ],
+    "additionalProperties": false
+  },
+  "defaults": {},
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "test_round": {
+        "type": "string"
+      },
+      "group_id": {
+        "type": "string"
+      },
+      "variant_id": {
+        "type": "string"
+      },
+      "prompt_version": {
+        "type": "string"
+      },
+      "assignment_key": {
+        "type": "string"
+      },
+      "algorithm": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "test_round",
+      "group_id",
+      "variant_id",
+      "prompt_version",
+      "assignment_key",
+      "algorithm"
+    ],
+    "additionalProperties": false
+  }
+}

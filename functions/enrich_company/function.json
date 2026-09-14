@@ -1,0 +1,97 @@
+{
+  "id": "enrich_company",
+  "description": "Resolve a company and collect cited public firmographics before scoring.",
+  "runtime": "table",
+  "kind": "research",
+  "inputs": {
+    "company_domain": "text",
+    "known_facts": "jsonb"
+  },
+  "prompt": "prompts/enrich_company.md",
+  "research_query": "{{company_domain}} company product team about",
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "company_domain": {
+        "type": "string"
+      },
+      "name": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "business_model": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "industry": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "headcount": {
+        "type": [
+          "number",
+          "null"
+        ]
+      },
+      "country": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "outbound_evidence": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "sources": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "fact": {
+              "type": "string"
+            },
+            "checked_at": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "url",
+            "fact",
+            "checked_at"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "missing": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "company_domain",
+      "name",
+      "business_model",
+      "industry",
+      "headcount",
+      "country",
+      "outbound_evidence",
+      "sources",
+      "missing"
+    ],
+    "additionalProperties": false
+  }
+}

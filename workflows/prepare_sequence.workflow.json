@@ -1,0 +1,282 @@
+{
+  "manifest_version": 2,
+  "workflow": {
+    "id": "gtm-architecture-prepare-sequence",
+    "name": "prepare_sequence",
+    "status": "disabled"
+  },
+  "trigger": {
+    "type": "api",
+    "status": "disabled"
+  },
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "company_threshold": {
+        "type": "number"
+      },
+      "persona_threshold": {
+        "type": "number"
+      },
+      "company_score": {
+        "type": "number"
+      },
+      "persona_score": {
+        "type": "number"
+      },
+      "email": {
+        "type": "string"
+      },
+      "email_status": {
+        "type": "string"
+      },
+      "max_verification_age_days": {
+        "type": "number"
+      },
+      "reviewed": {
+        "type": "boolean"
+      },
+      "suppressed": {
+        "type": "boolean"
+      },
+      "remaining_capacity": {
+        "type": "integer"
+      },
+      "sequence_id": {
+        "type": "string"
+      },
+      "test_round": {
+        "type": "string"
+      },
+      "group_id": {
+        "type": "string"
+      },
+      "variant_id": {
+        "type": "string"
+      },
+      "prompt_version": {
+        "type": "string"
+      },
+      "subject": {
+        "type": "string"
+      },
+      "body": {
+        "type": "string"
+      },
+      "as_of_ms": {
+        "type": "number"
+      },
+      "verified_at_ms": {
+        "type": "number"
+      },
+      "company_disqualified": {
+        "type": "boolean"
+      },
+      "persona_disqualified": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "company_threshold",
+      "persona_threshold",
+      "company_score",
+      "persona_score",
+      "email",
+      "email_status",
+      "verified_at_ms",
+      "as_of_ms",
+      "max_verification_age_days",
+      "reviewed",
+      "suppressed",
+      "remaining_capacity",
+      "sequence_id",
+      "test_round",
+      "group_id",
+      "variant_id",
+      "prompt_version",
+      "subject",
+      "body",
+      "company_disqualified",
+      "persona_disqualified"
+    ],
+    "additionalProperties": false
+  },
+  "nodes": [
+    {
+      "id": "trigger",
+      "name": "Function input",
+      "kind": "trigger",
+      "ui": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "execute",
+      "name": "prepare_sequence",
+      "description": "Check fit, verification, review and capacity before the native Sequence handoff; does not send.",
+      "kind": "code",
+      "ui": {
+        "x": 320,
+        "y": 0
+      },
+      "code": {
+        "version": 1,
+        "language": "javascript",
+        "runtime": "oxygen-js-v1",
+        "source": "(inputs) => { const input = inputs;\n  const reasons = [];\n  const score = x => typeof x === 'number' && Number.isFinite(x) && x >= 0 && x <= 100;\n  if(input.company_disqualified !== false || input.persona_disqualified !== false) reasons.push('A disqualification is present or has not been checked.');\n  if (!score(input.company_threshold) || !score(input.persona_threshold)) throw new Error('Valid thresholds required.');\n  if (!score(input.company_score) || input.company_score < input.company_threshold) reasons.push('Company fit failed.');\n  if (!score(input.persona_score) || input.persona_score < input.persona_threshold) reasons.push('Persona fit failed.');\n  if (typeof input.email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(input.email)) reasons.push('Missing work email.');\n  if (input.email_status !== 'valid') reasons.push('Email must have a valid verification result.');\n  const validTimes = Number.isSafeInteger(input.as_of_ms) && input.as_of_ms >= 0 && Number.isSafeInteger(input.verified_at_ms) && input.verified_at_ms >= 0;\n  const age = validTimes ? (input.as_of_ms - input.verified_at_ms) / 86400000 : -1;\n  if (!Number.isFinite(input.max_verification_age_days) || input.max_verification_age_days <= 0 || !Number.isFinite(age) || age < 0 || age > input.max_verification_age_days) reasons.push('Verification is missing, future-dated or stale.');\n  if (input.reviewed !== true) reasons.push('First touch has not been reviewed.');\n  if (input.suppressed !== false) reasons.push('Suppression status must be explicitly clear.');\n  if (!Number.isInteger(input.remaining_capacity) || input.remaining_capacity < 1) reasons.push('No capacity.');\n  for (const key of ['sequence_id','test_round','group_id','variant_id','prompt_version','subject','body']) if (typeof input[key] !== 'string' || !input[key].trim()) reasons.push(key + ' is missing.');\n  return { ready: reasons.length === 0, reasons, sequence_id: String(input.sequence_id || ''), email: String(input.email || ''), subject: String(input.subject || ''), body: String(input.body || ''), test_round: String(input.test_round || ''), group_id: String(input.group_id || ''), variant_id: String(input.variant_id || ''), prompt_version: String(input.prompt_version || '') };\n}",
+        "inputs": {
+          "company_threshold": {
+            "type": "ref",
+            "path": "trigger.input.company_threshold"
+          },
+          "persona_threshold": {
+            "type": "ref",
+            "path": "trigger.input.persona_threshold"
+          },
+          "company_score": {
+            "type": "ref",
+            "path": "trigger.input.company_score"
+          },
+          "persona_score": {
+            "type": "ref",
+            "path": "trigger.input.persona_score"
+          },
+          "email": {
+            "type": "ref",
+            "path": "trigger.input.email"
+          },
+          "email_status": {
+            "type": "ref",
+            "path": "trigger.input.email_status"
+          },
+          "max_verification_age_days": {
+            "type": "ref",
+            "path": "trigger.input.max_verification_age_days"
+          },
+          "reviewed": {
+            "type": "ref",
+            "path": "trigger.input.reviewed"
+          },
+          "suppressed": {
+            "type": "ref",
+            "path": "trigger.input.suppressed"
+          },
+          "remaining_capacity": {
+            "type": "ref",
+            "path": "trigger.input.remaining_capacity"
+          },
+          "sequence_id": {
+            "type": "ref",
+            "path": "trigger.input.sequence_id"
+          },
+          "test_round": {
+            "type": "ref",
+            "path": "trigger.input.test_round"
+          },
+          "group_id": {
+            "type": "ref",
+            "path": "trigger.input.group_id"
+          },
+          "variant_id": {
+            "type": "ref",
+            "path": "trigger.input.variant_id"
+          },
+          "prompt_version": {
+            "type": "ref",
+            "path": "trigger.input.prompt_version"
+          },
+          "subject": {
+            "type": "ref",
+            "path": "trigger.input.subject"
+          },
+          "body": {
+            "type": "ref",
+            "path": "trigger.input.body"
+          },
+          "as_of_ms": {
+            "type": "ref",
+            "path": "trigger.input.as_of_ms"
+          },
+          "verified_at_ms": {
+            "type": "ref",
+            "path": "trigger.input.verified_at_ms"
+          },
+          "company_disqualified": {
+            "type": "ref",
+            "path": "trigger.input.company_disqualified"
+          },
+          "persona_disqualified": {
+            "type": "ref",
+            "path": "trigger.input.persona_disqualified"
+          }
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "ready": {
+              "type": "boolean"
+            },
+            "reasons": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "sequence_id": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "subject": {
+              "type": "string"
+            },
+            "body": {
+              "type": "string"
+            },
+            "test_round": {
+              "type": "string"
+            },
+            "group_id": {
+              "type": "string"
+            },
+            "variant_id": {
+              "type": "string"
+            },
+            "prompt_version": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "ready",
+            "reasons",
+            "sequence_id",
+            "email",
+            "subject",
+            "body",
+            "test_round",
+            "group_id",
+            "variant_id",
+            "prompt_version"
+          ],
+          "additionalProperties": false
+        },
+        "limits": {
+          "timeout_ms": 1000,
+          "max_input_bytes": 250000,
+          "max_output_bytes": 250000
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "trigger-execute",
+      "source": "trigger",
+      "target": "execute"
+    }
+  ],
+  "compiler_version": "oxygen-workflows-v2",
+  "source_hash": "a95cf6c7bd28b4a56e0085986cfe59ff49b95ac28e59fc62d4bec055f0e3eeb8"
+}

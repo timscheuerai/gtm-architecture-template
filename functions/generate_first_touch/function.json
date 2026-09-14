@@ -1,0 +1,64 @@
+{
+  "id": "generate_first_touch",
+  "description": "Draft one reviewed first touch for an already assigned test variant.",
+  "runtime": "table",
+  "kind": "ai",
+  "inputs": {
+    "company_evidence": "jsonb",
+    "person_evidence": "jsonb",
+    "scoring_reasons": "text",
+    "offer": "text",
+    "assigned_copy": "text",
+    "test_round": "text",
+    "group_id": "text",
+    "variant_id": "text",
+    "prompt_version": "text"
+  },
+  "prompt": "prompts/generate_first_touch.md",
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "subject": {
+        "type": "string"
+      },
+      "body": {
+        "type": "string"
+      },
+      "test_round": {
+        "type": "string"
+      },
+      "group_id": {
+        "type": "string"
+      },
+      "variant_id": {
+        "type": "string"
+      },
+      "prompt_version": {
+        "type": "string"
+      },
+      "evidence_used": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "review_notes": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "subject",
+      "body",
+      "test_round",
+      "group_id",
+      "variant_id",
+      "prompt_version",
+      "evidence_used",
+      "review_notes"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,46 @@
+[
+  {
+    "example_id": "draft-1",
+    "company_evidence": {
+      "company_domain": "company-0.example",
+      "name": "Example Company 0",
+      "business_model": "B2B SaaS",
+      "industry": "software",
+      "headcount": 40,
+      "country": "Switzerland",
+      "outbound_evidence": "Example fixture: a sales operations team runs outbound.",
+      "sources": [
+        {
+          "url": "https://company-0.example/about",
+          "fact": "Synthetic example; replace with observed facts.",
+          "checked_at": "2026-09-14T00:00:00Z"
+        }
+      ],
+      "missing": []
+    },
+    "person_evidence": {
+      "full_name": "Alex Example",
+      "linkedin_url": null,
+      "company_domain": "company-0.example",
+      "current_title": "Head of Revenue Operations",
+      "department": "Revenue Operations",
+      "seniority": "Head",
+      "responsibilities": "Synthetic fixture: owns the outbound tooling budget.",
+      "sources": [
+        {
+          "url": "https://company-0.example/team",
+          "fact": "Synthetic current role and responsibilities.",
+          "checked_at": "2026-09-14T00:00:00Z"
+        }
+      ],
+      "missing": []
+    },
+    "scoring_reasons": "Company has an existing outbound motion; contact owns tooling.",
+    "offer": "Example product: one workspace for the outbound stages. Offer an architecture diagram. No customer claims or metrics approved.",
+    "assigned_copy": "End with exactly: Worth sending you the architecture diagram?",
+    "test_round": "cta-001",
+    "group_id": "b2b-saas-revops",
+    "variant_id": "A",
+    "prompt_version": "first-touch-v1"
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "example_id": "company-0",
+    "expected_score": 100,
+    "expected_disqualified": false
+  },
+  {
+    "example_id": "company-1",
+    "expected_score": 100,
+    "expected_disqualified": false
+  },
+  {
+    "example_id": "company-2",
+    "expected_score": 100,
+    "expected_disqualified": false
+  },
+  {
+    "example_id": "company-3",
+    "expected_score": 100,
+    "expected_disqualified": false
+  },
+  {
+    "example_id": "company-4",
+    "expected_score": 75,
+    "expected_disqualified": false
+  },
+  {
+    "example_id": "company-5",
+    "expected_score": 80,
+    "expected_disqualified": false
+  },
+  {
+    "example_id": "company-6",
+    "expected_score": 100,
+    "expected_disqualified": false
+  },
+  {
+    "example_id": "company-7",
+    "expected_score": 0,
+    "expected_disqualified": true
+  },
+  {
+    "example_id": "company-8",
+    "expected_score": 0,
+    "expected_disqualified": true
+  },
+  {
+    "example_id": "company-9",
+    "expected_score": 0,
+    "expected_disqualified": true
+  }
+]

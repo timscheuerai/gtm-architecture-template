@@ -1,0 +1,9 @@
+[
+  {
+    "example_id": "replace-before-live",
+    "company_domain": "company-0.example",
+    "known_facts": {
+      "note": "Synthetic input. Replace with an account you know before a paid lookup."
+    }
+  }
+]

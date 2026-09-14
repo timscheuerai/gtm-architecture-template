@@ -1,0 +1,23 @@
+{
+  "minimum_delivered": 100,
+  "events": [
+    {
+      "event_id": "delivered-1",
+      "enrollment_id": "enrollment-1",
+      "test_round": "cta-001",
+      "group_id": "b2b-saas-revops",
+      "variant_id": "A",
+      "prompt_version": "first-touch-v1",
+      "event": "delivered"
+    },
+    {
+      "event_id": "reply-1",
+      "enrollment_id": "enrollment-1",
+      "test_round": "cta-001",
+      "group_id": "b2b-saas-revops",
+      "variant_id": "A",
+      "prompt_version": "first-touch-v1",
+      "event": "positive_reply"
+    }
+  ]
+}

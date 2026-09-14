@@ -1,0 +1,98 @@
+{
+  "id": "find_person",
+  "description": "Find one current matching person at a qualified company, or return explicit missing fields.",
+  "runtime": "table",
+  "kind": "research",
+  "inputs": {
+    "company_domain": "text",
+    "persona_rubric": "text",
+    "excluded_profiles": "jsonb"
+  },
+  "prompt": "prompts/find_person.md",
+  "research_query": "{{company_domain}} leadership revenue operations sales operations",
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "full_name": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "linkedin_url": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "company_domain": {
+        "type": "string"
+      },
+      "current_title": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "department": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "seniority": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "responsibilities": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "sources": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "fact": {
+              "type": "string"
+            },
+            "checked_at": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "url",
+            "fact",
+            "checked_at"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "missing": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "full_name",
+      "linkedin_url",
+      "company_domain",
+      "current_title",
+      "department",
+      "seniority",
+      "responsibilities",
+      "sources",
+      "missing"
+    ],
+    "additionalProperties": false
+  }
+}

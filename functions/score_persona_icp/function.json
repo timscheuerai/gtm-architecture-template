@@ -1,0 +1,45 @@
+{
+  "id": "score_persona_icp",
+  "description": "Score a person's current remit separately from company fit.",
+  "runtime": "table",
+  "kind": "ai",
+  "inputs": {
+    "person_evidence": "jsonb",
+    "persona_rubric": "text"
+  },
+  "prompt": "prompts/score_persona_icp.md",
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "score": {
+        "type": "number"
+      },
+      "reason": {
+        "type": "string"
+      },
+      "disqualified": {
+        "type": "boolean"
+      },
+      "missing": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "evidence_used": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "score",
+      "reason",
+      "disqualified",
+      "missing",
+      "evidence_used"
+    ],
+    "additionalProperties": false
+  }
+}

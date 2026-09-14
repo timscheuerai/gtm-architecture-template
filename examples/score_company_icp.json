@@ -1,0 +1,216 @@
+[
+  {
+    "example_id": "company-0",
+    "company_evidence": {
+      "company_domain": "company-0.example",
+      "name": "Example Company 0",
+      "business_model": "B2B SaaS",
+      "industry": "software",
+      "headcount": 40,
+      "country": "Switzerland",
+      "outbound_evidence": "Example fixture: a sales operations team runs outbound.",
+      "sources": [
+        {
+          "url": "https://company-0.example/about",
+          "fact": "Synthetic example; replace with observed facts.",
+          "checked_at": "2026-09-14T00:00:00Z"
+        }
+      ],
+      "missing": []
+    },
+    "icp_rubric": "B2B SaaS: 40 points. 10–200 employees: 25. Switzerland/Germany/Austria/UK/US: 15. Evidence of existing outbound: 20. Unknown: zero points. Consumer-only business or agency disqualifies: score 0."
+  },
+  {
+    "example_id": "company-1",
+    "company_evidence": {
+      "company_domain": "company-1.example",
+      "name": "Example Company 1",
+      "business_model": "B2B SaaS",
+      "industry": "software",
+      "headcount": 40,
+      "country": "Switzerland",
+      "outbound_evidence": "Example fixture: a sales operations team runs outbound.",
+      "sources": [
+        {
+          "url": "https://company-1.example/about",
+          "fact": "Synthetic example; replace with observed facts.",
+          "checked_at": "2026-09-14T00:00:00Z"
+        }
+      ],
+      "missing": []
+    },
+    "icp_rubric": "B2B SaaS: 40 points. 10–200 employees: 25. Switzerland/Germany/Austria/UK/US: 15. Evidence of existing outbound: 20. Unknown: zero points. Consumer-only business or agency disqualifies: score 0."
+  },
+  {
+    "example_id": "company-2",
+    "company_evidence": {
+      "company_domain": "company-2.example",
+      "name": "Example Company 2",
+      "business_model": "B2B SaaS",
+      "industry": "software",
+      "headcount": 40,
+      "country": "Switzerland",
+      "outbound_evidence": "Example fixture: a sales operations team runs outbound.",
+      "sources": [
+        {
+          "url": "https://company-2.example/about",
+          "fact": "Synthetic example; replace with observed facts.",
+          "checked_at": "2026-09-14T00:00:00Z"
+        }
+      ],
+      "missing": []
+    },
+    "icp_rubric": "B2B SaaS: 40 points. 10–200 employees: 25. Switzerland/Germany/Austria/UK/US: 15. Evidence of existing outbound: 20. Unknown: zero points. Consumer-only business or agency disqualifies: score 0."
+  },
+  {
+    "example_id": "company-3",
+    "company_evidence": {
+      "company_domain": "company-3.example",
+      "name": "Example Company 3",
+      "business_model": "B2B SaaS",
+      "industry": "software",
+      "headcount": 40,
+      "country": "Switzerland",
+      "outbound_evidence": "Example fixture: a sales operations team runs outbound.",
+      "sources": [
+        {
+          "url": "https://company-3.example/about",
+          "fact": "Synthetic example; replace with observed facts.",
+          "checked_at": "2026-09-14T00:00:00Z"
+        }
+      ],
+      "missing": []
+    },
+    "icp_rubric": "B2B SaaS: 40 points. 10–200 employees: 25. Switzerland/Germany/Austria/UK/US: 15. Evidence of existing outbound: 20. Unknown: zero points. Consumer-only business or agency disqualifies: score 0."
+  },
+  {
+    "example_id": "company-4",
+    "company_evidence": {
+      "company_domain": "company-4.example",
+      "name": "Example Company 4",
+      "business_model": "B2B SaaS",
+      "industry": "software",
+      "headcount": null,
+      "country": "Switzerland",
+      "outbound_evidence": "Example fixture: a sales operations team runs outbound.",
+      "sources": [
+        {
+          "url": "https://company-4.example/about",
+          "fact": "Synthetic example; replace with observed facts.",
+          "checked_at": "2026-09-14T00:00:00Z"
+        }
+      ],
+      "missing": [
+        "headcount"
+      ]
+    },
+    "icp_rubric": "B2B SaaS: 40 points. 10–200 employees: 25. Switzerland/Germany/Austria/UK/US: 15. Evidence of existing outbound: 20. Unknown: zero points. Consumer-only business or agency disqualifies: score 0."
+  },
+  {
+    "example_id": "company-5",
+    "company_evidence": {
+      "company_domain": "company-5.example",
+      "name": "Example Company 5",
+      "business_model": "B2B SaaS",
+      "industry": "software",
+      "headcount": 40,
+      "country": "Switzerland",
+      "outbound_evidence": null,
+      "sources": [
+        {
+          "url": "https://company-5.example/about",
+          "fact": "Synthetic example; replace with observed facts.",
+          "checked_at": "2026-09-14T00:00:00Z"
+        }
+      ],
+      "missing": [
+        "outbound_evidence"
+      ]
+    },
+    "icp_rubric": "B2B SaaS: 40 points. 10–200 employees: 25. Switzerland/Germany/Austria/UK/US: 15. Evidence of existing outbound: 20. Unknown: zero points. Consumer-only business or agency disqualifies: score 0."
+  },
+  {
+    "example_id": "company-6",
+    "company_evidence": {
+      "company_domain": "company-6.example",
+      "name": "Example Company 6",
+      "business_model": "B2B SaaS",
+      "industry": "software",
+      "headcount": 40,
+      "country": "Switzerland",
+      "outbound_evidence": "Example fixture: a sales operations team runs outbound.",
+      "sources": [
+        {
+          "url": "https://company-6.example/about",
+          "fact": "Synthetic example; replace with observed facts.",
+          "checked_at": "2026-09-14T00:00:00Z"
+        }
+      ],
+      "missing": []
+    },
+    "icp_rubric": "B2B SaaS: 40 points. 10–200 employees: 25. Switzerland/Germany/Austria/UK/US: 15. Evidence of existing outbound: 20. Unknown: zero points. Consumer-only business or agency disqualifies: score 0."
+  },
+  {
+    "example_id": "company-7",
+    "company_evidence": {
+      "company_domain": "company-7.example",
+      "name": "Example Company 7",
+      "business_model": "consumer services",
+      "industry": "software",
+      "headcount": 40,
+      "country": "Switzerland",
+      "outbound_evidence": "Example fixture: a sales operations team runs outbound.",
+      "sources": [
+        {
+          "url": "https://company-7.example/about",
+          "fact": "Synthetic example; replace with observed facts.",
+          "checked_at": "2026-09-14T00:00:00Z"
+        }
+      ],
+      "missing": []
+    },
+    "icp_rubric": "B2B SaaS: 40 points. 10–200 employees: 25. Switzerland/Germany/Austria/UK/US: 15. Evidence of existing outbound: 20. Unknown: zero points. Consumer-only business or agency disqualifies: score 0."
+  },
+  {
+    "example_id": "company-8",
+    "company_evidence": {
+      "company_domain": "company-8.example",
+      "name": "Example Company 8",
+      "business_model": "consumer services",
+      "industry": "software",
+      "headcount": 600,
+      "country": "Switzerland",
+      "outbound_evidence": "Example fixture: a sales operations team runs outbound.",
+      "sources": [
+        {
+          "url": "https://company-8.example/about",
+          "fact": "Synthetic example; replace with observed facts.",
+          "checked_at": "2026-09-14T00:00:00Z"
+        }
+      ],
+      "missing": []
+    },
+    "icp_rubric": "B2B SaaS: 40 points. 10–200 employees: 25. Switzerland/Germany/Austria/UK/US: 15. Evidence of existing outbound: 20. Unknown: zero points. Consumer-only business or agency disqualifies: score 0."
+  },
+  {
+    "example_id": "company-9",
+    "company_evidence": {
+      "company_domain": "company-9.example",
+      "name": "Example Company 9",
+      "business_model": "consumer services",
+      "industry": "software",
+      "headcount": 40,
+      "country": "Brazil",
+      "outbound_evidence": "Example fixture: a sales operations team runs outbound.",
+      "sources": [
+        {
+          "url": "https://company-9.example/about",
+          "fact": "Synthetic example; replace with observed facts.",
+          "checked_at": "2026-09-14T00:00:00Z"
+        }
+      ],
+      "missing": []
+    },
+    "icp_rubric": "B2B SaaS: 40 points. 10–200 employees: 25. Switzerland/Germany/Austria/UK/US: 15. Evidence of existing outbound: 20. Unknown: zero points. Consumer-only business or agency disqualifies: score 0."
+  }
+]

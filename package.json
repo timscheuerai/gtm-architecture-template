@@ -1,0 +1,17 @@
+{
+  "name": "gtm-architecture-template",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Editable GTM functions for OXYGEN: research, scoring, enrichment, prioritisation and experiments.",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test",
+    "setup": "node scripts/oxygen.mjs setup",
+    "preview": "node scripts/oxygen.mjs preview",
+    "example": "node scripts/oxygen.mjs example",
+    "status": "node scripts/oxygen.mjs status"
+  },
+  "license": "MIT"
+}

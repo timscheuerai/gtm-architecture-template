@@ -1,0 +1,104 @@
+{
+  "id": "analyse_results",
+  "description": "Aggregate unique delivered/replied/booked enrollments by experiment cohort.",
+  "runtime": "workflow",
+  "source": "functions/analyse_results.mjs",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "events": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "minimum_delivered": {
+        "type": "integer"
+      }
+    },
+    "required": [
+      "events",
+      "minimum_delivered"
+    ],
+    "additionalProperties": false
+  },
+  "defaults": {},
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "cohorts": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "test_round": {
+              "type": "string"
+            },
+            "group_id": {
+              "type": "string"
+            },
+            "variant_id": {
+              "type": "string"
+            },
+            "prompt_version": {
+              "type": "string"
+            },
+            "delivered": {
+              "type": "number"
+            },
+            "positive_replies": {
+              "type": "number"
+            },
+            "meetings": {
+              "type": "number"
+            },
+            "positive_reply_rate": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "meeting_rate": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "enough_data": {
+              "type": "boolean"
+            },
+            "orphan_outcomes": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "test_round",
+            "group_id",
+            "variant_id",
+            "prompt_version",
+            "delivered",
+            "positive_replies",
+            "meetings",
+            "positive_reply_rate",
+            "meeting_rate",
+            "enough_data",
+            "orphan_outcomes"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "review_required": {
+        "type": "boolean"
+      },
+      "note": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "cohorts",
+      "review_required",
+      "note"
+    ],
+    "additionalProperties": false
+  }
+}

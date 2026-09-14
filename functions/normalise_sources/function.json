@@ -1,0 +1,90 @@
+{
+  "id": "normalise_sources",
+  "description": "Normalise and deduplicate source accounts while preserving distinct signals.",
+  "runtime": "workflow",
+  "source": "functions/normalise_sources.mjs",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "records": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    },
+    "required": [
+      "records"
+    ],
+    "additionalProperties": false
+  },
+  "defaults": {},
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "accounts": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "company_domain": {
+              "type": "string"
+            },
+            "signals": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "source": {
+                    "type": "string"
+                  },
+                  "signal_type": {
+                    "type": "string"
+                  },
+                  "observed_at_ms": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "source",
+                  "signal_type",
+                  "observed_at_ms"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "company_domain",
+            "signals"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "rejected": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "accounts",
+      "rejected"
+    ],
+    "additionalProperties": false
+  }
+}

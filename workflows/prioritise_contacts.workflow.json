@@ -1,0 +1,174 @@
+{
+  "manifest_version": 2,
+  "workflow": {
+    "id": "gtm-architecture-prioritise-contacts",
+    "name": "prioritise_contacts",
+    "status": "disabled"
+  },
+  "trigger": {
+    "type": "api",
+    "status": "disabled"
+  },
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "candidates": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "company_threshold": {
+        "type": "number"
+      },
+      "persona_threshold": {
+        "type": "number"
+      },
+      "capacity": {
+        "type": "integer"
+      },
+      "max_signal_age_days": {
+        "type": "number"
+      },
+      "as_of_ms": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "candidates",
+      "company_threshold",
+      "persona_threshold",
+      "capacity",
+      "as_of_ms",
+      "max_signal_age_days"
+    ],
+    "additionalProperties": false
+  },
+  "nodes": [
+    {
+      "id": "trigger",
+      "name": "Function input",
+      "kind": "trigger",
+      "ui": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "execute",
+      "name": "prioritise_contacts",
+      "description": "Select qualified contacts within capacity using fit and fresh intent.",
+      "kind": "code",
+      "ui": {
+        "x": 320,
+        "y": 0
+      },
+      "code": {
+        "version": 1,
+        "language": "javascript",
+        "runtime": "oxygen-js-v1",
+        "source": "(inputs) => { const input = inputs;\n  const { candidates, company_threshold, persona_threshold, capacity, as_of_ms, max_signal_age_days, mode } = input;\n  if (!Array.isArray(candidates) || candidates.length > 1000) throw new Error('Supply at most 1000 candidates.');\n  if (!['accounts', 'contacts'].includes(mode)) throw new Error('mode must be accounts or contacts');\n  if (!Number.isInteger(capacity) || capacity < 0 || capacity > 1000) throw new Error('capacity must be 0..1000');\n  const score = x => typeof x === 'number' && Number.isFinite(x) && x >= 0 && x <= 100;\n  if (!score(company_threshold) || !score(persona_threshold)) throw new Error('Thresholds must be 0..100.');\n  const now = as_of_ms;\n  if (!Number.isSafeInteger(now) || now < 0 || !Number.isFinite(max_signal_age_days) || max_signal_age_days <= 0) throw new Error('A valid as_of_ms and positive signal lifetime are required.');\n  const eligible = [], held = [], ids = new Set();\n  for (const c of candidates) {\n    if (typeof c.id !== 'string' || !c.id || ids.has(c.id)) throw new Error('Each candidate must have a unique id.');\n    ids.add(c.id);\n    if (c.company_disqualified !== false || !score(c.company_score) || c.company_score < company_threshold || (mode === 'contacts' && (c.persona_disqualified !== false || !score(c.persona_score) || c.persona_score < persona_threshold))) {\n      held.push({ id: c.id, reason: 'Fit gate failed or required score missing.' }); continue;\n    }\n    if (c.suppressed === true) { held.push({ id: c.id, reason: 'Suppressed.' }); continue; }\n    const age = Number.isSafeInteger(c.observed_at_ms) && c.observed_at_ms >= 0 ? (now - c.observed_at_ms) / 86400000 : -1;\n    const intent = score(c.signal_strength) && Number.isFinite(age) && age >= 0 && age <= max_signal_age_days ? c.signal_strength * (1 - age / max_signal_age_days) : 0;\n    const fit = mode === 'contacts' ? (c.company_score + c.persona_score) / 2 : c.company_score;\n    eligible.push({ id: c.id, priority: Math.round((0.7 * fit + 0.3 * intent) * 100) / 100, intent_score: Math.round(intent * 100) / 100, reason: '70% fit + 30% freshness-adjusted intent; passed independent fit gates.' });\n  }\n  eligible.sort((a,b) => b.priority - a.priority || a.id.localeCompare(b.id));\n  for (const c of eligible.slice(capacity)) held.push({ id: c.id, reason: 'Outside this run’s capacity.' });\n  return { selected: eligible.slice(0, capacity), held };\n}",
+        "inputs": {
+          "candidates": {
+            "type": "ref",
+            "path": "trigger.input.candidates"
+          },
+          "company_threshold": {
+            "type": "ref",
+            "path": "trigger.input.company_threshold"
+          },
+          "persona_threshold": {
+            "type": "ref",
+            "path": "trigger.input.persona_threshold"
+          },
+          "capacity": {
+            "type": "ref",
+            "path": "trigger.input.capacity"
+          },
+          "max_signal_age_days": {
+            "type": "ref",
+            "path": "trigger.input.max_signal_age_days"
+          },
+          "mode": {
+            "type": "literal",
+            "value": "contacts"
+          },
+          "as_of_ms": {
+            "type": "ref",
+            "path": "trigger.input.as_of_ms"
+          }
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "selected": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "priority": {
+                    "type": "number"
+                  },
+                  "intent_score": {
+                    "type": "number"
+                  },
+                  "reason": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "priority",
+                  "intent_score",
+                  "reason"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "held": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "reason": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "reason"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "selected",
+            "held"
+          ],
+          "additionalProperties": false
+        },
+        "limits": {
+          "timeout_ms": 1000,
+          "max_input_bytes": 250000,
+          "max_output_bytes": 250000
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "trigger-execute",
+      "source": "trigger",
+      "target": "execute"
+    }
+  ],
+  "compiler_version": "oxygen-workflows-v2",
+  "source_hash": "d973cd2e75457100483096df376ba421bdc43af20718b01f00fa0b000d9bcae8"
+}

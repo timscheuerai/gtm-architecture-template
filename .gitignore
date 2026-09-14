@@ -1,0 +1,9 @@
+.oxygen/
+node_modules/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+company/private/
+data/

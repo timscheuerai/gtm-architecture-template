@@ -1,0 +1,142 @@
+{
+  "manifest_version": 2,
+  "workflow": {
+    "id": "gtm-architecture-normalise-sources",
+    "name": "normalise_sources",
+    "status": "disabled"
+  },
+  "trigger": {
+    "type": "api",
+    "status": "disabled"
+  },
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "records": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    },
+    "required": [
+      "records"
+    ],
+    "additionalProperties": false
+  },
+  "nodes": [
+    {
+      "id": "trigger",
+      "name": "Function input",
+      "kind": "trigger",
+      "ui": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "execute",
+      "name": "normalise_sources",
+      "description": "Normalise and deduplicate source accounts while preserving distinct signals.",
+      "kind": "code",
+      "ui": {
+        "x": 320,
+        "y": 0
+      },
+      "code": {
+        "version": 1,
+        "language": "javascript",
+        "runtime": "oxygen-js-v1",
+        "source": "(inputs) => { const input = inputs;\n  if (!Array.isArray(input.records) || input.records.length > 1000) throw new Error('Supply at most 1000 source records.');\n  const seen = new Map();\n  const rejected = [];\n  for (const record of input.records) {\n    const raw = String(record.company_domain || '').trim().toLowerCase();\n    const domain = raw.replace(/^[a-z][a-z0-9+.-]*:\\/\\//, '').split(/[/?#]/)[0].replace(/^www\\./, '').replace(/:\\d+$/, '');\n    const validDomain = /^(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z]{2,63}$/.test(domain);\n    const time = record.observed_at_ms;\n    if (!validDomain || !Number.isSafeInteger(time) || time < 0 || !record.source || !record.signal_type) {\n      rejected.push({ id: String(record.id || raw), reason: 'Missing or invalid domain, source, signal type or timestamp.' });\n      continue;\n    }\n    const event = { source: String(record.source), signal_type: String(record.signal_type), observed_at_ms: time };\n    if (!seen.has(domain)) seen.set(domain, { company_domain: domain, signals: [] });\n    const account = seen.get(domain);\n    if (!account.signals.some(s => s.source === event.source && s.signal_type === event.signal_type && s.observed_at_ms === time)) account.signals.push(event);\n  }\n  return { accounts: [...seen.values()].sort((a,b) => a.company_domain.localeCompare(b.company_domain)), rejected };\n}",
+        "inputs": {
+          "records": {
+            "type": "ref",
+            "path": "trigger.input.records"
+          }
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "accounts": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "company_domain": {
+                    "type": "string"
+                  },
+                  "signals": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "source": {
+                          "type": "string"
+                        },
+                        "signal_type": {
+                          "type": "string"
+                        },
+                        "observed_at_ms": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "source",
+                        "signal_type",
+                        "observed_at_ms"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "company_domain",
+                  "signals"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "rejected": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "reason": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "reason"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "accounts",
+            "rejected"
+          ],
+          "additionalProperties": false
+        },
+        "limits": {
+          "timeout_ms": 1000,
+          "max_input_bytes": 250000,
+          "max_output_bytes": 250000
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "trigger-execute",
+      "source": "trigger",
+      "target": "execute"
+    }
+  ],
+  "compiler_version": "oxygen-workflows-v2",
+  "source_hash": "49195446a2941edf2f2f0788e7fea680c97757861431bbf0182e99c9b594296a"
+}

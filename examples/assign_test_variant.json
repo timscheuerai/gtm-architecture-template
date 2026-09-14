@@ -1,0 +1,10 @@
+{
+  "account_key": "company-0.example",
+  "test_round": "cta-001",
+  "group_id": "b2b-saas-revops",
+  "prompt_version": "first-touch-v1",
+  "variants": [
+    "A",
+    "B"
+  ]
+}

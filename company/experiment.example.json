@@ -1,0 +1,17 @@
+{
+  "test_round": "cta-001",
+  "group_id": "b2b-saas-revops",
+  "prompt_version": "first-touch-v1",
+  "dimension": "copy.cta",
+  "hypothesis": "Offering a diagram produces more positive replies than asking for a walkthrough.",
+  "randomisation_unit": "company_domain",
+  "variants": ["A", "B"],
+  "fixed": ["targeting", "offer", "subject", "opening", "cadence", "prompt_version"],
+  "copy": {
+    "A": "Worth sending you the architecture diagram?",
+    "B": "Open to a 15-minute walkthrough?"
+  },
+  "minimum_delivered_per_variant": 100,
+  "primary_metric": "positive_reply_rate",
+  "note": "The sample floor is a review trigger, not a statistical significance guarantee. Keep variant order fixed for this round."
+}

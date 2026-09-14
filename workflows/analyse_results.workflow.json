@@ -1,0 +1,160 @@
+{
+  "manifest_version": 2,
+  "workflow": {
+    "id": "gtm-architecture-analyse-results",
+    "name": "analyse_results",
+    "status": "disabled"
+  },
+  "trigger": {
+    "type": "api",
+    "status": "disabled"
+  },
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "events": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "minimum_delivered": {
+        "type": "integer"
+      }
+    },
+    "required": [
+      "events",
+      "minimum_delivered"
+    ],
+    "additionalProperties": false
+  },
+  "nodes": [
+    {
+      "id": "trigger",
+      "name": "Function input",
+      "kind": "trigger",
+      "ui": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "execute",
+      "name": "analyse_results",
+      "description": "Aggregate unique delivered/replied/booked enrollments by experiment cohort.",
+      "kind": "code",
+      "ui": {
+        "x": 320,
+        "y": 0
+      },
+      "code": {
+        "version": 1,
+        "language": "javascript",
+        "runtime": "oxygen-js-v1",
+        "source": "(inputs) => { const input = inputs;\n  if (!Array.isArray(input.events) || input.events.length > 5000) throw new Error('Supply at most 5000 normalised outcome events.');\n  if (!Number.isInteger(input.minimum_delivered) || input.minimum_delivered < 1) throw new Error('Set minimum_delivered before examining results.');\n  const groups = new Map(), people = new Map(), seen = new Map();\n  for (const e of input.events) {\n    for (const key of ['event_id','enrollment_id','test_round','group_id','variant_id','prompt_version','event']) if (typeof e[key] !== 'string' || !e[key]) throw new Error('Event missing ' + key);\n    if (!['delivered','positive_reply','meeting_booked'].includes(e.event)) throw new Error('Unsupported event: ' + e.event);\n    const canonical = JSON.stringify([e.enrollment_id,e.test_round,e.group_id,e.variant_id,e.prompt_version,e.event]);\n    if (seen.has(e.event_id)) { if (seen.get(e.event_id) !== canonical) throw new Error('Conflicting duplicate event ID.'); continue; }\n    seen.set(e.event_id, canonical);\n    const key = JSON.stringify([e.test_round,e.group_id,e.variant_id,e.prompt_version]);\n    if (people.has(e.enrollment_id) && people.get(e.enrollment_id) !== key) throw new Error('Enrollment changed treatment inside the supplied results.');\n    people.set(e.enrollment_id,key);\n    if (!groups.has(key)) groups.set(key,{test_round:e.test_round,group_id:e.group_id,variant_id:e.variant_id,prompt_version:e.prompt_version,delivered:new Set(),positive_reply:new Set(),meeting_booked:new Set()});\n    groups.get(key)[e.event].add(e.enrollment_id);\n  }\n  const cohorts = [...groups.values()].map(g => {\n    // Count outcomes only for delivered enrollments in this same cohort.\n    const positives = [...g.positive_reply].filter(id => g.delivered.has(id)).length;\n    const meetings = [...g.meeting_booked].filter(id => g.delivered.has(id)).length;\n    const delivered = g.delivered.size;\n    return {test_round:g.test_round,group_id:g.group_id,variant_id:g.variant_id,prompt_version:g.prompt_version,delivered,positive_replies:positives,meetings,positive_reply_rate:delivered ? positives / delivered : null,meeting_rate:delivered ? meetings / delivered : null,enough_data:delivered >= input.minimum_delivered,orphan_outcomes:[...new Set([...g.positive_reply,...g.meeting_booked])].filter(id => !g.delivered.has(id)).length};\n  });\n  return {cohorts,review_required:true,note:'Rates are descriptive. A sample floor is not statistical significance. Compare within round, group and prompt version; review a proposed rule change before changing ICP, offer or copy.'};\n}",
+        "inputs": {
+          "events": {
+            "type": "ref",
+            "path": "trigger.input.events"
+          },
+          "minimum_delivered": {
+            "type": "ref",
+            "path": "trigger.input.minimum_delivered"
+          }
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "cohorts": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "test_round": {
+                    "type": "string"
+                  },
+                  "group_id": {
+                    "type": "string"
+                  },
+                  "variant_id": {
+                    "type": "string"
+                  },
+                  "prompt_version": {
+                    "type": "string"
+                  },
+                  "delivered": {
+                    "type": "number"
+                  },
+                  "positive_replies": {
+                    "type": "number"
+                  },
+                  "meetings": {
+                    "type": "number"
+                  },
+                  "positive_reply_rate": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "meeting_rate": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "enough_data": {
+                    "type": "boolean"
+                  },
+                  "orphan_outcomes": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "test_round",
+                  "group_id",
+                  "variant_id",
+                  "prompt_version",
+                  "delivered",
+                  "positive_replies",
+                  "meetings",
+                  "positive_reply_rate",
+                  "meeting_rate",
+                  "enough_data",
+                  "orphan_outcomes"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "review_required": {
+              "type": "boolean"
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "cohorts",
+            "review_required",
+            "note"
+          ],
+          "additionalProperties": false
+        },
+        "limits": {
+          "timeout_ms": 1000,
+          "max_input_bytes": 250000,
+          "max_output_bytes": 250000
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "trigger-execute",
+      "source": "trigger",
+      "target": "execute"
+    }
+  ],
+  "compiler_version": "oxygen-workflows-v2",
+  "source_hash": "37c218af661de13950bed66e0d12801b11c301cf4da0da6853d5bb2d1f2ff076"
+}
