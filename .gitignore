@@ -7,3 +7,14 @@ node_modules/
 *.log
 company/private/
 data/
+output/
+__pycache__/
+*.pyc
+**/workspace.local.json
+**/notion.local.json
+**/settings.local.json
+context/raw/sources/
+context/raw/assets/
+context/research/
+client_secrets.json
+token.json

@@ -4,7 +4,7 @@ Validated using `oxygen-dev` CLI 1.927.2 against the OXYGEN dev API 1.978.2/1.97
 
 | Check | Result |
 |---|---|
-| Local contract and behaviour tests | 13 passed, including execution of the exact generated code in an isolated VM |
+| Local contract and behaviour tests | 18 passed, including generated workflow code, demo acceptance and non-destructive skill discovery |
 | Function setup in dev | Seven callable backing tables registered; six workflows installed disabled |
 | Hosted deterministic runs | All six completed in `dry_run`; each returned a zero-credit receipt with no paid provider calls or external writes |
 | Portable blueprint preflight | Passed with no issues, using explicit references to the tables already installed by setup |
@@ -24,4 +24,14 @@ No model generation, web research, email discovery, verification or outbound del
 
 No native Sequence is installed or connected by this kit. Provider-event normalisation, source acquisition and the complete cross-function orchestration remain specific to the motion you build. See [composition.md](composition.md).
 
-Reproduce the local checks with `npm run build && npm test`. Reproduce installation, examples and previews with the README commands. Workspace IDs and run receipts are kept locally under `.oxygen/` and are excluded from the public template.
+Reproduce the local checks with `npm run build`, `npm test`, `npm run check:kit` and `npm run check:context` (Python 3). Reproduce installation, examples and previews with [the OXYGEN setup guide](oxygen-setup.md). Workspace IDs and run receipts are kept locally under `.oxygen/` and are excluded from the public template.
+
+## Consolidated kit · v0.2.0
+
+- All 42 skills passed frontmatter validation; the package check covers catalog consistency, local Markdown links and the shared Claude discovery path.
+- The 19 blank context pages passed the context structure/link check.
+- The default offline demo produced 10 unique accounts, 5 selected accounts, 4 qualified contacts and no ready messages. Capacity changes preserved assignment stability. The committed sample report matches generated output.
+- The Claude link helper was tested for initial setup, repeated setup, a ZIP text placeholder and preservation of unrelated existing files/directories.
+- Skill procedures were reviewed for private client examples, machine paths, stale prices and missing-script claims. The copied flowchart helpers are portable Python source; visual rendering still requires an editor and inspection.
+
+These are package and deterministic behavior checks. They do not claim end-to-end execution of all 42 skills, successful model calibration, video rendering, provider provisioning, content publishing or a live outbound pilot. The hosted function definitions are unchanged from v0.1.0's dev validation above.

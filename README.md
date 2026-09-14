@@ -1,111 +1,71 @@
-# GTM Architecture Template
+# GTM Architecture Kit
 
-Fork this repo. Edit your ICP and offer. Install the functions into OXYGEN. Inspect one account before running a batch.
+**Build your first qualified account queue, reviewed outreach draft and learning loop.**
 
-This kit contains **13 editable function templates**: seven callable tables for research, scoring, contact lookup and copy; six deterministic workflows for source intake, prioritisation, experiment assignment, send readiness and results. Execution and row state live in OXYGEN. Local JavaScript builds definitions and tests the pure functions.
+One repo for the company context, agent skills and editable functions behind that work. Start with a ten-account example, then adapt it to your market.
 
-## Start here
+[Use this template](https://github.com/new?template_name=gtm-architecture-template&template_owner=timscheuerai) · [Download ZIP](https://github.com/timscheuerai/gtm-architecture-template/archive/refs/heads/main.zip) · [See the worked example](examples/demo/report.md)
 
-Requires Node.js 22+ and an OXYGEN account. Install the [OXYGEN CLI](https://oxygen-agent.com/docs/quickstart) and log in:
+## Get a result first
+
+Requires Node.js 22+. No account, API key, dependency install or paid service is needed for this demo.
 
 ```sh
-npm install -g @oxygen-agent/cli
-oxygen login
 git clone https://github.com/timscheuerai/gtm-architecture-template.git
 cd gtm-architecture-template
+npm run demo
+```
+
+Open `output/demo/report.md`. You will see **10 accounts → 5 selected accounts → 4 qualified contacts → 0 ready messages**, with a reason for every hold. Change capacity with `npm run demo -- --capacity 3`.
+
+The demo runs the six deterministic functions using synthetic research, scores, verification and copy. It makes no provider calls or sends. [See the full first-batch guide](docs/first-batch.md) to replace the fixtures with your own criteria.
+
+## What you get
+
+| Part | What it helps you produce |
+|---|---|
+| [Company brief and rubrics](company) | One buyer, useful offer, independent fit gates and exclusions |
+| [13 function templates](docs/oxygen-setup.md#the-functions) | Source intake, research, scoring, priority queues, contact lookup, test assignment, copy, readiness and results |
+| [42 agent skills](docs/skills.md) | Guided GTM work, content, visuals and optional media/infrastructure procedures |
+| [Blank context workspace](context/index.md) | Your audience, voice, source material, strategy and cleared proof |
+| [Worked example](examples/demo/report.md) | Inspectable decisions and held rows before you connect tools |
+| [Experiment and learning templates](company/experiment.example.json) | Frozen variants, outcome definitions and reviewed next changes |
+| [OXYGEN installer and blueprints](docs/oxygen-setup.md) | Seven callable tables and six disabled workflows in your workspace |
+
+The functions are modular. [Composition](docs/composition.md) explains how to map them together and hand off to a native Sequence. Installing them does not wire or launch a full campaign.
+
+## Pick your first job
+
+**Prepare a first batch.** Fill [the brief](company/brief.example.md), then open this repo in your coding agent:
+
+> Use gtm-start. Help me qualify ten known accounts, explain the holds, write one useful first touch and define one test.
+
+**Turn your expertise into content.** Start with an interview or writing samples:
+
+> Use setup-workspace, then capture-context and voice-calibration. Draft one LinkedIn post from the supplied source.
+
+**Install the hosted functions.** Follow [OXYGEN setup](docs/oxygen-setup.md). It requires an OXYGEN account and CLI; provider/model runs have separate costs. Inspect a one-row preview and calibrate before a live batch.
+
+## One shared skills library
+
+The canonical files live in [.agents/skills](.agents/skills). Claude Code uses the same files through `.claude/skills`. Open the repo as your workspace and ask for a skill by name. Run `npm run skills` for the catalog.
+
+If your ZIP extractor or Git configuration materializes the Claude link as a text file, run `npm run skills:claude` to repair it. No global skill installation is required. Moving only a SKILL.md into another project can break its context and function references; keep the kit together.
+
+The [catalog](docs/skills.md) separates the core journey from optional content, video and infrastructure work. Flowchart helpers are bundled; media renderers, provider clients and subscriptions are external prerequisites. Skills are instructions for an agent, not proof that each external integration has been tested.
+
+## Make it yours
+
+Keep real prospect exports in ignored `data/`, private company inputs in `company/private/`, and outputs in `output/`. Connection preferences are ignored; credentials stay in the tools' auth stores. Use a private working repo when filling the tracked context pages with sensitive material.
+
+Edit prompts and contracts, then verify:
+
+```sh
 npm run build
 npm test
-npm run setup                 # shows the workspace and resources to create
-npm run setup -- --apply      # installs them; runs no paid function
+npm run check:kit
 ```
 
-Use `OXYGEN_BIN=oxygen-dev` or append `--cli oxygen-dev` to the setup/example/preview commands when working in dev. Authentication stays in your CLI profile; no API keys belong in this repo.
-
-Try a function with a supplied input:
-
-```sh
-npm run preview -- --function assign_test_variant
-npm run preview -- --function prioritise_contacts
-npm run preview -- --function prepare_sequence
-```
-
-These run the saved deterministic workflows in OXYGEN's `dry_run` mode. Inspect the returned run with `oxygen workflows run <run_id> --json`. The send-readiness example is intentionally unreviewed and returns `ready: false`.
-
-Then inspect the scoring prompt against ten **synthetic** companies:
-
-```sh
-npm run example -- --function score_company_icp
-npm run preview -- --function score_company_icp
-```
-
-The example command inserts fixture rows into the function's backing table; the preview renders the first row's prompt and estimates its cost. Expected scores are in [examples/score_company_icp.expected.json](examples/score_company_icp.expected.json). A preview does not call the model or prove score quality. Replace the synthetic inputs with ten companies you know before a live calibration.
-
-## The functions
-
-| Function | Implementation | Output |
-|---|---|---|
-| `normalise_sources` | Deterministic workflow | Unique company domains, preserved signals, rejected inputs |
-| `enrich_company` | Research callable | Cited firmographics and explicit gaps |
-| `score_company_icp` | AI callable | Company fit score, reason, disqualification and gaps |
-| `prioritise_accounts` | Deterministic workflow | Qualified research queue within capacity |
-| `find_person` | Research callable | One current candidate, with exclusion support for retries |
-| `enrich_person` | Research callable | Current role, remit, evidence and gaps |
-| `score_persona_icp` | AI callable | Persona fit score and reasons |
-| `prioritise_contacts` | Deterministic workflow | Contacts passing both gates, within capacity |
-| `enrich_contact_details` | Native enrichment callable | Work-email waterfall result, with verification |
-| `assign_test_variant` | Deterministic workflow | Stable account-level A/B assignment and version IDs |
-| `generate_first_touch` | AI callable | One draft using the assigned copy variant |
-| `prepare_sequence` | Deterministic workflow | Send-readiness decision and handoff fields |
-| `analyse_results` | Deterministic workflow | Deduplicated delivered/replied/booked rates per cohort |
-
-Every function has an editable [definition](functions), an [example input](examples), and declared inputs/outputs. AI and research functions also have [prompt files](prompts). The email function resolves current native provider definitions through the CLI during installation; phone lookup is an optional additional capability, not installed by default.
-
-## How they fit together
-
-```mermaid
-flowchart TD
-  sources[Lists and signals] --> normalise[Normalise sources]
-  normalise --> enrichCompany[Enrich company]
-  enrichCompany --> companyScore[Company fit]
-  companyScore --> accountQueue[Qualified account queue]
-  accountQueue --> findPerson[Find and enrich person]
-  findPerson --> personaScore[Persona fit]
-  personaScore --> contactQueue[Qualified contact queue]
-  personaScore -. failed match: exclude and retry .-> findPerson
-  contactQueue --> details[Find and verify email]
-  details --> variant[Assign test variant]
-  variant --> copy[Generate first touch]
-  copy --> review[Review and check send readiness]
-  review --> sequence[Your native OXYGEN Sequence]
-  sequence --> results[Normalise outcome events and analyse]
-  results --> learning[Reviewed learning and next test]
-  context[Your maintained ICP, persona and offer] -.-> companyScore
-  context -.-> personaScore
-  context -.-> copy
-  learning -. deliberate changes .-> context
-```
-
-These are composable functions, not a pre-armed outbound campaign. The diagram shows the intended composition; installing the kit does not connect every stage, attach a sender, enrol contacts, or arm a schedule. [Compose a motion](docs/composition.md) explains the mappings and the native Sequence handoff.
-
-## Customise it
-
-1. Write your company and persona rubrics using [company/](company). Keep your private company knowledge in your own workspace or `company/private/` (ignored by Git).
-2. Edit prompts and JSON contracts under `functions/` and `prompts/`. Run `npm run build && npm test`.
-3. Copy `config.example.json`, choose a unique `prefix`, and pass `--config your-config.json` to setup, example and preview. Use a new prefix to install a changed version alongside the previous one.
-4. Freeze a test plan using [experiment.example.json](company/experiment.example.json). The shipped assignment function supports two copy variants. Company/persona cohort tests need deliberate cohort labels; they are not randomised experiments.
-
-The priority policy is explicit: 70% fit and 30% freshness-adjusted intent. Change the source if that is wrong for your motion. Company and persona scores must independently pass before contact lookup; intent cannot rescue failed fit.
-
-## Live runs and delivery
-
-Setup creates definitions only. To run a paid callable, bind it to your working table, inspect a one-row dry run, then run that exact row with your chosen credit ceiling. [Composition examples](docs/composition.md) show the commands. The default callable ceiling is a limit, not a price estimate.
-
-Sending belongs to an OXYGEN Sequence: cadence, suppression, reply stops and limits are enforced there. `prepare_sequence` is an additional check, not a replacement for the Sequence's current checks or authorization. `analyse_results` returns descriptive evidence for review; it never rewrites the ICP or declares a statistically significant winner.
-
-## Portable assets and validation
-
-- [blueprints/functions.json](blueprints/functions.json): six table definitions and six disabled workflow graphs. Preflight with `oxygen blueprints preflight --file blueprints/functions.json --json`. The recommended setup script also registers the callables and creates the current email-waterfall definition.
-- [workflows/](workflows): individually editable and importable deterministic graphs, generated from the function source.
-- [Validation record](docs/validation.md): what was checked against dev and what still requires a live pilot.
+See [validation](docs/validation.md) for tested behavior and remaining live-pilot work. [Sources and consolidation](docs/sources.md) records where the skills came from and what was merged or replaced. This repository is the maintained distribution of the kit.
 
 MIT licensed. Built by [Tim Scheuer](https://github.com/timscheuerai).

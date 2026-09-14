@@ -12,4 +12,8 @@ jobs:
           node-version: 22
       - run: npm run build
       - run: npm test
-      - run: git diff --exit-code -- workflows blueprints
+      - run: npm run check:kit
+      - run: npm run check:context
+      - run: npm run demo
+      - run: npm run skills:claude
+      - run: git diff --exit-code -- workflows blueprints docs/skills.md
