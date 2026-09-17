@@ -19,6 +19,8 @@ Stub pages are unanswered prompts. They do not describe an author or provide usa
 
 Notion and QMD are optional. Drafts can stay in chat. Configure your own destinations in ignored workspace.local.json and strategy/notion.local.json; credentials belong in the connected tool. No IDs are preconfigured.
 
+For the complete LinkedIn path, use [the LinkedIn Pipeline Kit](../linkedin/README.md). Its [Notion guide](../linkedin/notion.md) connects the public webinar example and the bundled blank schema to your own workspace.
+
 From the kit root, run:
 
 ```sh

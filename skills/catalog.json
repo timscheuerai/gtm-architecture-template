@@ -343,6 +343,11 @@
           "cli_version": "1.927.2",
           "source_content_sha256": "7b2fc6139875e6ce9eb4a34724f2838a54cf415719a07d9c465863f6d0ce2cc3",
           "treatment": "adapted for this kit; private provenance markers, vendor runbooks and unavailable local references excluded"
+        },
+        {
+          "distribution": "LinkedIn Pipeline Kit update",
+          "retrieved": "2026-09-17",
+          "treatment": "Added native Profile Watcher and separate qualification routing; CLI 1.982.3 watcher and column help checked; links target bundled LinkedIn guides."
         }
       ]
     },

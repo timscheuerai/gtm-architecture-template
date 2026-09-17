@@ -7,6 +7,8 @@ description: Run OXYGEN LinkedIn content and warm-signal motions through Posts, 
 
 Read the author's context and [the runtime contract](../../../docs/runtime-contract.md). Use `linkedin-copywriter` for the actual grounded draft; this skill handles native delivery and engagement workflows.
 
+For the bundled content-to-pipeline setup, read [the LinkedIn kit](../../../linkedin/README.md). It links the author's scaffold, Notion board, native watcher, qualification template, DM framework and downloadable funnel.
+
 | Work | Native surface |
 |---|---|
 | Draft artifact and owned post data | Posts |
@@ -15,6 +17,10 @@ Read the author's context and [the runtime contract](../../../docs/runtime-contr
 | Working qualification/enrichment rows | Tables |
 | New DM and warm follow-up cadence | Sequences |
 | Existing-thread reply | Messages / Unibox |
+
+For daily engagers of named public LinkedIn profiles, prefer the native one-table [Profile Watcher](../../../linkedin/profile-watcher.md). Get real profile URLs, preview the current configuration and per-cycle credit cap, and preserve the returned hash. Creating or resuming it starts paid recurring collection; it is not the disabled three-table blueprint. Keep a stable create request ID across ambiguous retries.
+
+Add [qualification](../../../linkedin/qualification.md) only after inspecting the actual table columns and the user's company/persona rubric. The bundled prompt reads existing evidence and has a separate paid AI run. Calibrate a bounded sample before auto-run. Hold missing required enrichment, keep company and person fit independent, and retain the exact engager's source-post attribution. Watcher collection, qualification, resource delivery and Sequence enrollment are separate operations; do not imply one automatically performs the next.
 
 Discover the chosen motion with `oxygen capabilities search "LinkedIn content and warm engagement" --json`, then hydrate only its commands. Public/third-party research uses the current native public-research catalog where available; connected-account actions have their own limits and scope. Do not silently substitute another provider.
 
