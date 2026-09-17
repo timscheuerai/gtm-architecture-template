@@ -6,6 +6,12 @@ One repo for the company context, agent skills and editable functions behind tha
 
 [Use this template](https://github.com/new?template_name=gtm-architecture-template&template_owner=timscheuerai) · [Download ZIP](https://github.com/timscheuerai/gtm-architecture-template/archive/refs/heads/main.zip) · [See the worked example](examples/demo/report.md)
 
+## Turn LinkedIn content into pipeline
+
+Start with the [LinkedIn Pipeline Kit](linkedin/README.md): 23 selected content and branding skills, the personal-brand scaffold, a Notion board guide, OXYGEN Profile Watcher setup, an editable qualification prompt, a DM conversion framework and the high-resolution funnel. All in this repository, with one shared skills library.
+
+The [LinkedIn guide](linkedin/README.md) takes you from your own source material to a post, then from relevant engagement to a qualified conversation. Start there if you came for the content system; the account-sourcing demo below is a separate entry point.
+
 ## Get a result first
 
 Requires Node.js 22+. No account, API key, dependency install or paid service is needed for this demo.

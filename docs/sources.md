@@ -2,6 +2,8 @@
 
 This repository is the maintained distribution for the combined GTM Architecture Kit. It contains the 13 function templates, the blank author/company context, the walkthrough and one canonical skills library. The original repositories retain their histories; they are not required to use this kit.
 
+The [LinkedIn Pipeline Kit](../linkedin/README.md), added September 17, 2026, gives the content system its own starting path within this repository. It selects 23 existing content/branding skills and adds the Notion example link, native Profile Watcher instructions, qualification prompt/schema, conversation framework and Tim's funnel exports. [Its source notes](../linkedin/sources.md) distinguish verified local checks from live services not exercised.
+
 | Source | Snapshot used | Treatment |
 |---|---|---|
 | OXYGEN-CRO/gtm-vault | `12accb49fb765597537768466b8bf7c59af250c0` | Copy, personalization and enrollment procedures retained; vendor-specific sourcing/domain/mailbox skills removed in v0.3.0 |
