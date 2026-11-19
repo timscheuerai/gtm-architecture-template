@@ -1,0 +1,50 @@
+{
+ "steps": [
+  {
+   "id": "visit",
+   "channel": "linkedin",
+   "kind": "visit_profile"
+  },
+  {
+   "id": "email1",
+   "channel": "email",
+   "kind": "email_send",
+   "subject_template": "Congrats on the new role, {{first_name|there}}",
+   "body_template": "Hi {{first_name|there}},\n\nCongrats on starting at {{company_name}}.\n\nYou ran AP on our product at your last company, so you know the setup. If {{company_name}} still processes invoices by hand, we can bring your old workflow over in a few weeks.\n\nWorth a catch-up?\n\n{{sender_first_name}}"
+  },
+  {
+   "id": "connect",
+   "channel": "linkedin",
+   "kind": "invite",
+   "note_template": "Hi {{first_name|there}}, congrats on the move to {{company_name}}. Great to stay in touch."
+  },
+  {
+   "id": "accepted",
+   "kind": "branch",
+   "condition": "connection_accepted",
+   "timeout_days": 7,
+   "then_id": "message",
+   "else_id": "email2"
+  },
+  {
+   "id": "message",
+   "channel": "linkedin",
+   "kind": "message",
+   "template": "Thanks for connecting, {{first_name|there}}. If AP at {{company_name}} looks like your old setup before automation, happy to help you move it over. Catch-up next week?"
+  },
+  {
+   "id": "stop_linkedin",
+   "kind": "stop"
+  },
+  {
+   "id": "email2",
+   "channel": "email",
+   "kind": "email_send",
+   "body_template": "Hi {{first_name|there}},\n\nIf it helps your first 90 days, I can send the rollout plan your last team used.\n\n{{sender_first_name}}"
+  },
+  {
+   "id": "stop_email",
+   "kind": "stop"
+  }
+ ]
+}

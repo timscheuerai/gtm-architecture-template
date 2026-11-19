@@ -1,0 +1,50 @@
+{
+ "steps": [
+  {
+   "id": "visit",
+   "channel": "linkedin",
+   "kind": "visit_profile"
+  },
+  {
+   "id": "email1",
+   "channel": "email",
+   "kind": "email_send",
+   "subject_template": "New finance leadership at {{company_name}}",
+   "body_template": "Hi {{first_name|there}},\n\n{{why_now}}\n\nA new finance leader usually reviews the AP process in the first 90 days: cost per invoice, approval time, late fees.\n\nWe automate AP end to end, so those numbers are ready before the review starts.\n\nWorth 20 minutes?\n\n{{sender_first_name}}"
+  },
+  {
+   "id": "connect",
+   "channel": "linkedin",
+   "kind": "invite",
+   "note_template": "Hi {{first_name|there}}, saw {{company_name}} is hiring a new finance leader. I help finance teams get AP in shape for that first review. Happy to connect."
+  },
+  {
+   "id": "accepted",
+   "kind": "branch",
+   "condition": "connection_accepted",
+   "timeout_days": 7,
+   "then_id": "message",
+   "else_id": "email2"
+  },
+  {
+   "id": "message",
+   "channel": "linkedin",
+   "kind": "message",
+   "template": "Thanks for connecting, {{first_name|there}}. {{why_now}} When the new CFO starts, AP numbers come up early. I can show what automated AP looks like in a 20-minute call. Interested?"
+  },
+  {
+   "id": "stop_linkedin",
+   "kind": "stop"
+  },
+  {
+   "id": "email2",
+   "channel": "email",
+   "kind": "email_send",
+   "body_template": "Hi {{first_name|there}},\n\nIf a short benchmark helps for the new CFO, I can send what AP costs per invoice at companies your size, manual versus automated.\n\n{{sender_first_name}}"
+  },
+  {
+   "id": "stop_email",
+   "kind": "stop"
+  }
+ ]
+}

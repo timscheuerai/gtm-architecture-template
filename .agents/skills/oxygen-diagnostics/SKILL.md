@@ -1,6 +1,6 @@
 ---
 name: oxygen-diagnostics
-description: Trace OXYGEN cells and runs, explain failures or credit spend, and plan reconciled retries from native provenance.
+description: Diagnose a running OXYGEN workspace: trace a cell value and its provenance, explain stuck or failed runs, sweep and retry table failures, explain plan, credit and rate-limit refusals, and explain or reduce credit spend. Read-only investigation first.
 ---
 
 # Explain one operational failure
@@ -21,3 +21,5 @@ Use run and item provenance to connect the symptom to its owner. Avoid dumping e
 Before a retry, identify exact items, possible duplicate effects and incremental cost. Reconcile an ambiguous send or write first. Preview the bounded repair and execute only within the authorized scope; do not switch providers or build hidden local recovery state.
 
 Return the most likely cause, supporting IDs/links, remaining uncertainty and verified repair state. If a product defect remains, prepare a reproducible report locally; sending feedback or transcripts requires the user's request.
+
+For spend questions, read the run's credit receipts and the usage meter rather than estimating; a queued run spends nothing until a worker starts it, and most enrichment lanes bill only on a hit.

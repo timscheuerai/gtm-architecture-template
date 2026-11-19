@@ -1,6 +1,6 @@
 ---
 name: oxygen-unibox
-description: Triage OXYGEN Messages and Unibox conversations, prepare grounded replies and send only within the user's specified account and thread scope.
+description: Use OXYGEN Messages and the Unibox to find, read, classify, tag, archive, draft and reply in existing email, LinkedIn and WhatsApp conversations, and send one direct email. Net-new LinkedIn outreach uses Sequences.
 ---
 
 # Work the existing conversation

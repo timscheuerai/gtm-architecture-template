@@ -1,6 +1,6 @@
 ---
 name: oxygen-table-tidy
-description: Inspect and improve OXYGEN Table structure, visibility and formatting while preserving raw data, dependencies and record identity.
+description: Tidy an OXYGEN Table: find duplicate columns, ordering, formatting, types, hide or archive candidates and suspicious values, present findings by category, then apply only approved reversible fixes. Table structure, not CRM record merges.
 ---
 
 # Make the Table usable

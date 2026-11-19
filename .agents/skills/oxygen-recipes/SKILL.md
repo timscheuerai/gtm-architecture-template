@@ -1,24 +1,17 @@
 ---
 name: oxygen-recipes
-description: Find and inspect a versioned OXYGEN business play, preflight its resources and adapt it to the reader's GTM goal.
+description: Search, read and install OXYGEN plays: proven GTM motions with prerequisites, credit posture, approval gates and an optional kit of native stages, then adapt the play to the reader's company.
 ---
 
-# Choose a useful play
+# Borrow a proven play
 
-Read the user's goal and [first-batch guide](../../../docs/first-batch.md). A Recipe is an advisory playbook whose steps use native Tables, Workflows, Sequences and other primitives.
+Read the user's goal and [first-batch guide](../../../docs/first-batch.md). A play is advisory: business case, outcome, leading metric, prerequisites, credit posture, approval gates and optionally a kit of native stages.
 
-```sh
-oxygen capabilities search "proven play for warm LinkedIn engagement" --json
-oxygen commands get "recipes list" --json
-oxygen commands get "recipes show" --json
-```
+- Search by goal or constraint: `oxygen recipes list "<goal>" --view summary --limit 6 --json`.
+- Read one: `oxygen recipes show <slug> --json`. It reports which kit stages the workspace already has.
+- Forecast a kit: `oxygen recipes apply <slug> --dry-run --json`.
+- Install a kit: `oxygen recipes apply <slug> --json`. It costs 0 credits, makes no provider calls, leaves every Workflow disabled and skips stages that already exist.
 
-List a bounded set by goal or lifecycle stage, read one selected Recipe and explain its prerequisites, input, output and limits. Use the reader's actual context; do not make a network motion the default for someone who has no relevant network or chose a different channel.
+A play the user already selected wins over any default. Installing grants nothing further: running, enabling, enrolling, sending and spending each keep their own preview, cap and approval. To design a motion for this company rather than borrow one, use [oxygen-gtm-consultant](../oxygen-gtm-consultant/SKILL.md). For this repo's functions, prefer [the existing installer](../../../docs/oxygen-setup.md) over duplicate equivalents.
 
-For a first LinkedIn motion, inspect the current `linkedin-network-first-motion` recipe if available. Distinguish captured events from coverage of the existing network, and make any standing auto-enrollment grant explicit.
-
-If the Recipe includes a staged kit or Blueprint, inspect the current apply/preflight command. Preview the resources and cumulative forecast before installation. Reuse existing matching stages and record installed versions. Read the resulting resource states; installation does not authorize enabling, enrollment, sending or paid steps.
-
-Use the selected play's actual dependency order and current command schemas. For this repo's functions, prefer [the existing installer](../../../docs/oxygen-setup.md) over creating duplicate equivalents.
-
-Return the chosen play, rationale, prerequisites, installed objects if requested, and the next useful action. A recommended or installed Recipe is not a completed motion.
+Present a play in plain words: what it gets them, its steps, what the workspace still lacks, what it costs and what each approval asks. Return deep links for every object created.

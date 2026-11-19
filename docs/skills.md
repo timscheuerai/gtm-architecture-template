@@ -1,6 +1,6 @@
 # Skills catalog
 
-51 skills share one library in .agents/skills/. Open the whole repository in your coding agent and ask for a skill by name. Context and function references are part of the package; these skills are not standalone single-file installs.
+61 skills share one library in .agents/skills/. Open the whole repository in your coding agent and ask for a skill by name. Context and function references are part of the package; these skills are not standalone single-file installs.
 
 Start with **gtm-start** for an account batch, or **setup-workspace → capture-context → voice-calibration → linkedin-copywriter** for content. You do not need to configure every skill before starting.
 
@@ -31,6 +31,7 @@ The offline demo needs Node.js 22+. Hosted functions need an OXYGEN account and 
 | [oxygen-dedupe](../.agents/skills/oxygen-dedupe/SKILL.md) | Review duplicate companies, people and source events before ingestion while preserving provenance and holding uncertain identity matches. |
 | [oxygen-sequencer-enroll](../.agents/skills/oxygen-sequencer-enroll/SKILL.md) | Prepare a reviewed, verified cohort for a native OXYGEN Sequence and execute only the user's authorized enrollment and sending scope. |
 | [personalize-ai-column](../.agents/skills/personalize-ai-column/SKILL.md) | Configure and preview the kit's generated first-touch callable using cited row evidence, a frozen experiment and an explicit credit ceiling. |
+| [signal-account-engine](../.agents/skills/signal-account-engine/SKILL.md) | Build a signal-scored outbound engine in OXYGEN: source the TAM, enrich and fit-score companies, layer hiring and leadership signals into a free score and tier, then find, fit-score and enrich buyers only at Tier A and B accounts and route them to draft Sequences behind an approval. |
 | [signals-sweep](../.agents/skills/signals-sweep/SKILL.md) | Collect a bounded batch of hiring, engagement or other account signals with source dates, deduplication and explicit qualification rules. |
 | [spin-tags](../.agents/skills/spin-tags/SKILL.md) | Add optional wording variants to static copy using the actual sender's supported syntax while preserving meaning, merge variables and experiment control. |
 | [split-test-designer](../.agents/skills/split-test-designer/SKILL.md) | Define one interpretable outbound experiment with frozen account-level assignment, copy versions and outcome measures. |
@@ -39,18 +40,27 @@ The offline demo needs Node.js 22+. Hosted functions need an OXYGEN account and 
 
 | Skill | Use it for |
 |---|---|
-| [oxygen-deliverability](../.agents/skills/oxygen-deliverability/SKILL.md) | Diagnose OXYGEN sender health from bounce, authentication, warmup and run evidence, then apply only the requested bounded remediation. |
-| [oxygen-diagnostics](../.agents/skills/oxygen-diagnostics/SKILL.md) | Trace OXYGEN cells and runs, explain failures or credit spend, and plan reconciled retries from native provenance. |
-| [oxygen-email-infra](../.agents/skills/oxygen-email-infra/SKILL.md) | Set up and inspect OXYGEN sender profiles, domains, mailboxes, authentication, warmup and Sequence attachment using native previews. |
-| [oxygen-gtm](../.agents/skills/oxygen-gtm/SKILL.md) | Route a GTM outcome to the correct OXYGEN primitive and select the narrower bundled skill for hosted execution. |
-| [oxygen-knowledge](../.agents/skills/oxygen-knowledge/SKILL.md) | Read and maintain OXYGEN Knowledge pages, sources, revisions and approved context so GTM functions use traceable company knowledge. |
-| [oxygen-linkedin-marketing](../.agents/skills/oxygen-linkedin-marketing/SKILL.md) | Run OXYGEN LinkedIn content and warm-signal motions through Posts, Publishing, Signals, Tables and bounded Sequences. |
-| [oxygen-quickstart](../.agents/skills/oxygen-quickstart/SKILL.md) | Connect this kit to an OXYGEN workspace, inspect capabilities and complete a small hosted demonstration without paid execution. |
-| [oxygen-recipes](../.agents/skills/oxygen-recipes/SKILL.md) | Find and inspect a versioned OXYGEN business play, preflight its resources and adapt it to the reader's GTM goal. |
-| [oxygen-sequencer](../.agents/skills/oxygen-sequencer/SKILL.md) | Operate native OXYGEN Sequences for new conversations and outreach cadence, including sender readiness, previews, enrollment, dispatch and recovery. |
-| [oxygen-table-tidy](../.agents/skills/oxygen-table-tidy/SKILL.md) | Inspect and improve OXYGEN Table structure, visibility and formatting while preserving raw data, dependencies and record identity. |
-| [oxygen-unibox](../.agents/skills/oxygen-unibox/SKILL.md) | Triage OXYGEN Messages and Unibox conversations, prepare grounded replies and send only within the user's specified account and thread scope. |
-| [oxygen-workflow-authoring](../.agents/skills/oxygen-workflow-authoring/SKILL.md) | Author, validate and operate deterministic OXYGEN Workflows with explicit inputs, hosted runs, current schemas and inspectable effects. |
+| [oxygen-crm](../.agents/skills/oxygen-crm/SKILL.md) | Work with OXYGEN Records, the canonical CRM: objects, fields and identities, notes and tasks, HubSpot or Attio imports and syncs with do-not-contact first, and binding and promoting Table rows into records. |
+| [oxygen-custom-http](../.agents/skills/oxygen-custom-http/SKILL.md) | Turn a public HTTPS API into OXYGEN catalog tools with a custom integration manifest: operations, fields and auth, server-side credentials, dry runs and live calls, tool columns, and safe removal. |
+| [oxygen-deliverability](../.agents/skills/oxygen-deliverability/SKILL.md) | Triage OXYGEN email deliverability, warm-up and bounce evidence, compare inbox placement by mailbox and receiver, run approval-gated placement tests and manage monitoring. Results are directional; bounce auto-pause is authoritative. |
+| [oxygen-diagnostics](../.agents/skills/oxygen-diagnostics/SKILL.md) | Diagnose a running OXYGEN workspace: trace a cell value and its provenance, explain stuck or failed runs, sweep and retry table failures, explain plan, credit and rate-limit refusals, and explain or reduce credit spend. Read-only investigation first. |
+| [oxygen-email-infra](../.agents/skills/oxygen-email-infra/SKILL.md) | Plan, set up and run OXYGEN cold email sending infrastructure: the Google and Microsoft mix and inbox count sized from the TAM, lookalike domains and DNS, managed and imported mailboxes, sender profiles, warm-up, recovery and wind-down. |
+| [oxygen-enrichment](../.agents/skills/oxygen-enrichment/SKILL.md) | Fill company and contact data in OXYGEN Tables with native waterfalls: company profiles, work email, phone, LinkedIn URLs and verification, with free previews, provider preflight, one-row pilots and capped runs. Includes how ContactOut fits the waterfall. |
+| [oxygen-gtm](../.agents/skills/oxygen-gtm/SKILL.md) | Route a GTM outcome to the correct OXYGEN primitive and the narrower bundled skill that teaches it: Knowledge, Records, Tables, Signals, Messages, Posts, Sequences, Publishing, Workflows, Agents and Observability. |
+| [oxygen-gtm-consultant](../.agents/skills/oxygen-gtm-consultant/SKILL.md) | Act as a GTM engineering consultant on an OXYGEN workspace: rate the context, read the current state, find the binding constraint, agree the problem, design a custom motion and run it as a pilot with a success bar and a kill line. |
+| [oxygen-knowledge](../.agents/skills/oxygen-knowledge/SKILL.md) | Operate OXYGEN Knowledge: index-first retrieval, wiki pages and folders, citations, revisions and sources, proposals for canonical copy, workspace skills and a local mirror. Use for company and ICP context, offers, voice, rubrics and learnings. |
+| [oxygen-linkedin-content](../.agents/skills/oxygen-linkedin-content/SKILL.md) | Write LinkedIn and X drafts grounded in the workspace's Knowledge, voice and real proof: research, idea gates, channel-specific writing, visuals and review, then save drafts for approval through Publishing. |
+| [oxygen-onboarding](../.agents/skills/oxygen-onboarding/SKILL.md) | Guide a first OXYGEN session from company context to first leads, a reviewed draft Sequence, a connected sender and a bounded launch. Use for get me started or the first campaign; for a diagnosis or plan, use oxygen-gtm-consultant. |
+| [oxygen-publishing](../.agents/skills/oxygen-publishing/SKILL.md) | Use OXYGEN Posts and Publishing to save drafts, queue, approve, schedule and read back LinkedIn, X and other channel posts, keep approval separate from status, handle uncertain publishes, and read post performance. |
+| [oxygen-quickstart](../.agents/skills/oxygen-quickstart/SKILL.md) | Connect this kit to an OXYGEN workspace, inspect capabilities and complete a small hosted demonstration without paid execution, then hand over to onboarding or the consultant. |
+| [oxygen-recipes](../.agents/skills/oxygen-recipes/SKILL.md) | Search, read and install OXYGEN plays: proven GTM motions with prerequisites, credit posture, approval gates and an optional kit of native stages, then adapt the play to the reader's company. |
+| [oxygen-sequencer](../.agents/skills/oxygen-sequencer/SKILL.md) | Operate native OXYGEN Sequences for new conversations and outreach cadence: readiness, drafts, previews and rendered copy, send ceilings, enrollment, do-not-contact policy, monitoring and recovery. |
+| [oxygen-signals](../.agents/skills/oxygen-signals/SKILL.md) | Capture and read OXYGEN Signals: your LinkedIn network, followers, viewers and post engagers; hiring, funding, tech and news signal searches; public profile watchers and keyword post search; competitor ads; and standing auto-enroll into a Sequence. |
+| [oxygen-sourcing](../.agents/skills/oxygen-sourcing/SKILL.md) | Find companies and people that are not in the workspace yet and land them in OXYGEN Tables: account and TAM lists, hiring companies, lookalikes, local businesses and buyers at named accounts, through free previews, typed plans, priced dry runs and approved live runs. |
+| [oxygen-table-tidy](../.agents/skills/oxygen-table-tidy/SKILL.md) | Tidy an OXYGEN Table: find duplicate columns, ordering, formatting, types, hide or archive candidates and suspicious values, present findings by category, then apply only approved reversible fixes. Table structure, not CRM record merges. |
+| [oxygen-tables](../.agents/skills/oxygen-tables/SKILL.md) | Build and run OXYGEN Tables: typed columns, formulas, AI and Classify columns, research, tool and HTTP columns, lookups and links, feeds and imports, with free previews, one-row pilots and capped runs. |
+| [oxygen-unibox](../.agents/skills/oxygen-unibox/SKILL.md) | Use OXYGEN Messages and the Unibox to find, read, classify, tag, archive, draft and reply in existing email, LinkedIn and WhatsApp conversations, and send one direct email. Net-new LinkedIn outreach uses Sequences. |
+| [oxygen-workflow-authoring](../.agents/skills/oxygen-workflow-authoring/SKILL.md) | Author, validate and operate deterministic OXYGEN Workflows and durable recipes with explicit inputs, call previews, smoke tests, capped live runs, hosted triggers and inspectable effects. |
 
 ## Content
 

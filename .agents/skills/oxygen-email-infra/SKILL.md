@@ -1,6 +1,6 @@
 ---
 name: oxygen-email-infra
-description: Set up and inspect OXYGEN sender profiles, domains, mailboxes, authentication, warmup and Sequence attachment using native previews.
+description: Plan, set up and run OXYGEN cold email sending infrastructure: the Google and Microsoft mix and inbox count sized from the TAM, lookalike domains and DNS, managed and imported mailboxes, sender profiles, warm-up, recovery and wind-down.
 ---
 
 # Prepare native senders
@@ -19,3 +19,5 @@ An active subscription, configured DNS and actual working authentication are dis
 For a requested disconnection or cancellation, preview effects on sending, credentials, history, renewals and affected Sequences. Removing a connection, ending warmup and canceling managed provisioning are different operations. Honor the native confirmation mechanism and read back state; do not delete external mailbox accounts through an inferred cleanup.
 
 Return sender/mailbox links, authentication and warmup states, actual charges if incurred, and any unresolved readiness. Infrastructure setup and warmup do not authorize outreach.
+
+Plan before buying: size the inbox count from the TAM, the sending cadence and a per-mailbox daily cap, and choose the Google and Microsoft mix for the market. Buying domains or mailboxes is a paid, approved step; a connected mailbox is not proof of readiness.

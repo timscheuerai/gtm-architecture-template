@@ -6,6 +6,14 @@ One repo for the company context, agent skills and editable functions behind tha
 
 [Use this template](https://github.com/new?template_name=gtm-architecture-template&template_owner=timscheuerai) · [Download ZIP](https://github.com/timscheuerai/gtm-architecture-template/archive/refs/heads/main.zip) · [See the worked example](examples/demo/report.md)
 
+## Came from the ContactOut x GTM Collective webinar? Start here
+
+The live build is in [examples/ap-automation-signal-engine](examples/ap-automation-signal-engine/README.md): the eight-stage engine for an AP automation company, with every table, formula, prompt, workflow, Sequence and measured cost, plus where ContactOut fits the waterfall. Open the repo in your coding agent and ask:
+
+> Use signal-account-engine and the AP automation worked example. Build the same engine for my ICP and stop before any paid step for my approval.
+
+**Webinar code CONTACTOUT50:** $50 off your first OXYGEN credit top-up (minimum $51, until 2026-12-31, first 100 redemptions).
+
 ## Get a result first
 
 Requires Node.js 22+. No account, API key, dependency install or paid service is needed for this demo.
@@ -26,9 +34,10 @@ The demo runs the six deterministic functions using synthetic research, scores, 
 |---|---|
 | [Company brief and rubrics](company) | One buyer, useful offer, independent fit gates and exclusions |
 | [13 function templates](docs/oxygen-setup.md#the-functions) | Source intake, research, scoring, priority queues, contact lookup, test assignment, copy, readiness and results |
-| [51 agent skills](docs/skills.md) | Guided GTM work, native OXYGEN operations, content, visuals and optional media |
+| [61 agent skills](docs/skills.md) | Guided GTM work, native OXYGEN operations, content, visuals and optional media |
 | [Blank context workspace](context/index.md) | Your audience, voice, source material, strategy and cleared proof |
 | [Worked example](examples/demo/report.md) | Inspectable decisions and held rows before you connect tools |
+| [Signal engine example](examples/ap-automation-signal-engine/README.md) | A live OXYGEN build: signals, free scoring, tiers, buyers, waterfall and approval-gated routing |
 | [Experiment and learning templates](company/experiment.example.json) | Frozen variants, outcome definitions and reviewed next changes |
 | [OXYGEN installer and blueprints](docs/oxygen-setup.md) | Seven callable tables and six disabled workflows in your workspace |
 
@@ -46,7 +55,9 @@ The functions are modular. [Composition](docs/composition.md) explains how to ma
 
 **Install the hosted functions.** Follow [OXYGEN setup](docs/oxygen-setup.md). It requires an OXYGEN account and CLI; provider/model runs have separate costs. Inspect a one-row preview and calibrate before a live batch.
 
-**Operate the system in OXYGEN.** Use [the 12 additional OXYGEN skills](docs/oxygen-skills.md) for Knowledge, Recipes, Workflows, Sequences, inbox, LinkedIn marketing, sender setup, deliverability, diagnostics and table cleanup. The guide includes concrete prompts for each stage.
+**Operate the system in OXYGEN.** Use [the 21 OXYGEN skills](docs/oxygen-skills.md) for onboarding, consulting, sourcing, Tables, enrichment, signals, CRM, Knowledge, Recipes, Workflows, Sequences, inbox, content and publishing, sender setup, deliverability, diagnostics and table cleanup. The guide includes concrete prompts for each stage.
+
+**Build a signal-scored account engine.** Use `signal-account-engine` with [the AP automation example](examples/ap-automation-signal-engine/README.md) to score accounts on cheap signals first and pay for contacts only at the top tier.
 
 ## One shared skills library
 

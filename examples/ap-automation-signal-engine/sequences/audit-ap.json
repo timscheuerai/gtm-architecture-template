@@ -1,0 +1,50 @@
+{
+ "steps": [
+  {
+   "id": "visit",
+   "channel": "linkedin",
+   "kind": "visit_profile"
+  },
+  {
+   "id": "email1",
+   "channel": "email",
+   "kind": "email_send",
+   "subject_template": "AP hiring at {{company_name}}",
+   "body_template": "Hi {{first_name|there}},\n\n{{why_now}}\n\nHiring for AP or year-end close usually means invoice volume is outgrowing the team.\n\nWe automate invoice capture, coding and approvals, so the team you have handles the volume and the audit trail is ready for year-end.\n\nWorth 20 minutes?\n\n{{sender_first_name}}"
+  },
+  {
+   "id": "connect",
+   "channel": "linkedin",
+   "kind": "invite",
+   "note_template": "Hi {{first_name|there}}, saw {{company_name}} is growing the finance team. I work with AP teams on invoice volume and audit trails. Happy to connect."
+  },
+  {
+   "id": "accepted",
+   "kind": "branch",
+   "condition": "connection_accepted",
+   "timeout_days": 7,
+   "then_id": "message",
+   "else_id": "email2"
+  },
+  {
+   "id": "message",
+   "channel": "linkedin",
+   "kind": "message",
+   "template": "Thanks for connecting, {{first_name|there}}. {{why_now}} I can show how teams handle more invoices without adding headcount, with an audit trail ready for year-end. Open to a short call?"
+  },
+  {
+   "id": "stop_linkedin",
+   "kind": "stop"
+  },
+  {
+   "id": "email2",
+   "channel": "email",
+   "kind": "email_send",
+   "body_template": "Hi {{first_name|there}},\n\nOne number that helps before the next hire: invoices per AP person per month. I can send the benchmark for companies your size.\n\n{{sender_first_name}}"
+  },
+  {
+   "id": "stop_email",
+   "kind": "stop"
+  }
+ ]
+}

@@ -1,29 +1,26 @@
 ---
 name: oxygen-workflow-authoring
-description: Author, validate and operate deterministic OXYGEN Workflows with explicit inputs, hosted runs, current schemas and inspectable effects.
+description: Author, validate and operate deterministic OXYGEN Workflows and durable recipes with explicit inputs, call previews, smoke tests, capped live runs, hosted triggers and inspectable effects.
 ---
 
 # Compose the hosted workflow
 
-Read [composition](../../../docs/composition.md), [the runtime contract](../../../docs/runtime-contract.md) and the relevant function definitions. This kit already contains six disabled workflow graphs.
+Read [composition](../../../docs/composition.md), [the runtime contract](../../../docs/runtime-contract.md) and the relevant function definitions. This kit contains six disabled workflow graphs and, in [the AP automation worked example](../../../examples/ap-automation-signal-engine/README.md), three durable recipes.
 
-Use Workflows for deterministic control flow, Tables for row dependencies, Sequences for outreach cadence and Agents for adaptive goals. Local files author definitions; OXYGEN executes production runs.
+Use Workflows for deterministic control flow across tables and schedules, Tables for row dependencies, Sequences for outreach cadence and Agents for adaptive goals. Local files author definitions; OXYGEN runs them.
 
 ```sh
-oxygen commands get "workflows schema" --json
 oxygen workflows schema --subject graph --json
-oxygen capabilities search "workflow trigger from a qualified account" --json
+oxygen workflows lint --file my-workflow.workflow.json --phase draft --json
+oxygen workflows apply --file my-workflow.workflow.json --draft --json
 ```
 
-1. Search existing definitions/templates and resolve resource IDs from the chosen workspace.
-2. Inspect the selected trigger's current event schema, including source, event and filters. Do not equate a human event label with an exact trigger.
-3. Author typed inputs, closed output schemas, explicit dependencies and error/hold paths. Avoid `#` in node IDs; it is reserved for iteration IDs.
-4. Lint for the intended draft/publish phase, then apply within the requested scope. Inspect the saved version and trigger status.
-5. Discover the current call preview and dry-run grammar. A call preview describes effects; a dry run may perform internal reads or permitted GETs. Inspect both before live scope.
-6. Execute or enable only the authorized rows/events, effects and credit ceiling. Tail the durable run and inspect outputs, retries and costs.
+1. Write the spec as data: goal, trigger (API, webhook, cron or event), input schema, steps with exact tool ids (`tools search --workflow-eligible`, then `tools get`), outputs, failure behavior, idempotency keys and credit expectations.
+2. Lint for the intended phase, then apply. Applying is inert: 0 credits, no run.
+3. `workflows call <ref> --preview` shows what leaves OXYGEN, which accounts it uses and the credit floor. Then smoke-test or dry-run.
+4. A live call needs `--approved` and a positive `--max-credits`. Enabling a cron, event or webhook trigger is a standing grant with its per-delivery ceiling, so keep demo workflows on an API trigger until the schedule is approved.
+5. Tail the run (`workflows tail <run_id>`) and read each step's output and receipt.
 
-Code nodes use declared inputs. For this kit, edit the pure source/contract and run `npm run build`; the generated `(inputs) => ...` expression is the deployed source. Do not insert ambient credentials, clocks or network calls.
+Recipes (`defineRecipe`) suit work that crosses tables: read rows, upsert rows, run paid columns on exact row ids under a ceiling, wait durably with `ctx.wait`, and pause for a person with `ctx.approvals.require`. Lookups, AI inputs and run conditions read stored values, so a recipe that depends on formulas starts with a free forced column run.
 
-An outbound graph enrolls through the native Sequence action. Inspect its current state and enrollment semantics; pending enrollment and active delivery differ. It must not bypass sender, suppression or reply-stop controls with raw provider sends.
-
-Return definition/version, lint results, previewed effects, run link and verified state. Reconcile ambiguous external effects before retrying; replay and one-node tests must use the current server-supported semantics.
+Outbound enrolls through the native Sequence action on a bounded Sequence, never a raw provider message. A plain GET can use `oxygen.http_json_request`. Reconcile ambiguous external effects before retrying.

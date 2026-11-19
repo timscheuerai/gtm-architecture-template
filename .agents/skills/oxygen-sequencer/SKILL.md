@@ -1,26 +1,27 @@
 ---
 name: oxygen-sequencer
-description: Operate native OXYGEN Sequences for new conversations and outreach cadence, including sender readiness, previews, enrollment, dispatch and recovery.
+description: Operate native OXYGEN Sequences for new conversations and outreach cadence: readiness, drafts, previews and rendered copy, send ceilings, enrollment, do-not-contact policy, monitoring and recovery.
 ---
 
 # Operate the Sequence
 
 Read [the runtime contract](../../../docs/runtime-contract.md). The kit-specific [enrollment skill](../oxygen-sequencer-enroll/SKILL.md) maps `prepare_sequence` outputs into the native surface; this skill owns Sequence setup and lifecycle.
 
-New LinkedIn conversations belong to Sequences even for one recipient. Cadenced or multi-recipient outreach uses Sequences. Existing-thread replies and direct email without cadence use [Messages](../oxygen-unibox/SKILL.md).
+New LinkedIn conversations belong to Sequences even for one recipient. Multistep email, LinkedIn, WhatsApp, call or CRM-task outreach uses Sequences. Existing-thread replies and direct email without cadence use [Messages](../oxygen-unibox/SKILL.md). A Workflow can enroll leads; the Sequence sends.
 
-Discover exact commands with `oxygen capabilities search "preview outreach sequence" --json`, then `commands get` for the selected operation.
+## Launch ladder
 
-Inspect these together:
-- Sender profiles, exact accounts/mailboxes, health, channel limits and stable recipient-to-sender binding.
-- Definition/version, ordered steps, delays, variants, send windows/time zone and any channel fallback.
-- Recipient identity, mapped variables, exclusions, suppression, prior-contact rules and tags.
-- Dispatch limits, lifetime budget, live-run cap, reply stops and bounce behavior.
+1. Readiness: `oxygen sequences get <sequence> --readiness --json` lists blockers and changes nothing.
+2. Draft: `sequences create` from a steps file, then `sequences update` while draft. A step for a channel the lead cannot be reached on is skipped, so one Sequence can cover leads with and without an email.
+3. Preview and render: `oxygen sequences preview <sequence> --json` (who sends each step, scope, capacity, suppressions) and `oxygen sequences render <sequence> --json` (every step and variant for real rows).
+4. Ceilings: `--max-live-sends` is the hard ceiling on real sends and CRM writes, required for email, WhatsApp and CRM-task journeys; `--max-credits` is optional.
+5. Explicit approval for the external write and the ceilings, then `sequences enroll` and `sequences start --approved`.
+6. Monitor with `sequences stats`, `sequences events --kind skipped,sent` and sender health.
 
-Preview the actual recipient scope and render messages with their real variables. Report unresolved identities individually. A connected mailbox is not proof of readiness. Use [email infrastructure](../oxygen-email-infra/SKILL.md) for sender setup and [deliverability](../oxygen-deliverability/SKILL.md) for health issues.
+## Do not contact
 
-Enrollment and dispatch are separate actions. Inspect the selected Sequence's current state: draft or paused enrollments may remain pending, while an active Sequence may deliver after enrollment. Execute only the user's authorized send scope and current platform gates; a cap is not authorization.
+Entries block before every send. Read `suppressions policy show` before the first live start: by default a LinkedIn reply suppresses that person in every future campaign, and bounces, unsubscribes and complaints stay suppressed for compliance.
 
-Record enrollment, variant and run IDs. For results, inspect campaign events/analytics and preserve actual mailbox/domain attribution; missing identity stays unattributed. Normalize events into `analyse_results` without claiming that the kit automatically wires telemetry.
+## Recovery
 
-For recovery, preview the narrow failed/deferred scope and reconcile provider outcomes before retrying. Pause/resume, retirement and capacity recovery have distinct semantics; discover them before acting. Return counts, held reasons, actual state, budget and deep-links.
+Every recovery path previews first and applies only to a paused Sequence: reconcile an ambiguous LinkedIn action before resending, retry stale deferrals, recover capacity denials. Enrollment and dispatch are separate actions; a cap is not authorization.
