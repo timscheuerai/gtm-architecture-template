@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.1 · 2026-11-19
+
+- **The content step is in the AP example** (`examples/ap-automation-signal-engine/content/`), closing the 0.5.0 TODO.
+  - `build_content.py` reads the engine's own tables and writes `results.json`, a LinkedIn post draft, and an animated GIF and MP4 (1080×1350) with a still.
+  - The renderer: `capture.mjs`, `graphic.html`, `graphic.css`, `animated.js` and the OXYGEN × ContactOut assets.
+  - Companies are anonymized unless `--names` is passed; people never appear.
+  - `build_engine.py --content` now runs it after the build.
+  - Nothing is published or scheduled.
+
 ## 0.5.0 · 2026-11-19
 
 - **The LinkedIn content system, complete.** 24 skills added and 22 updated from the LinkedIn Funnel kit, with the newest generic method changes ported in.
@@ -12,7 +21,7 @@
   - The prompts and Sequence steps live in `spec/`.
   - `build_engine.py` rebuilds the whole engine in any folder ("build that system").
   - New README sections cover the both-paths strategy and 4 more build lessons.
-- TODO: the content step (`build_content.py`: results.json, a LinkedIn post draft and an animated GIF from the engine's own tables) is not in the kit yet; `build_engine.py --content` says so.
+- The content step followed in 0.5.1.
 
 ## 0.4.1 · 2026-11-19
 

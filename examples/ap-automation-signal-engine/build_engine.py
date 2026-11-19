@@ -527,10 +527,7 @@ def main():
         b.step_run()
         b.summary()
     if a.content:
-        script = HERE / "build_content.py"
-        if not script.exists():
-            say("10 content", "the content step (results.json, LinkedIn post and animated GIF) is not in this kit yet")
-            return
+        script = HERE / "content" / "build_content.py"
         cmd = [sys.executable, str(script), "--folder", a.folder, "--label", a.label,
                "--prefix", a.prefix, *(["--profile", a.profile] if a.profile else [])] + (["--names"] if a.names else [])
         say("10 content", "results.json, LinkedIn post draft and animated GIF from this engine's own tables")

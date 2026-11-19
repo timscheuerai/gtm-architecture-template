@@ -96,7 +96,37 @@ python3 build_engine.py --folder "AP engine · Live build" --label Live --prefix
 - **Defaults:** 100 accounts and 1 page of job ads per hiring family.
 - **Spend:** every paid step runs under a ceiling, and the plan prints the price first.
 - **Resume:** existing tables, columns, Sequences and workflows are reused, so re-running resumes after a stop.
-- **Content step:** `--content` (results, a LinkedIn post and an animated GIF) is not in this kit yet.
+- **Content step:** add `--content` to end with the content the engine made (next section).
+
+## The ending: the engine makes the content
+
+The webinar ends with the engine producing real content from its own tables: a LinkedIn post draft and an animated graphic of the accounts and signals it found. [content/build_content.py](content/build_content.py) does it with free table exports and a local render; nothing is paid for, published or scheduled.
+
+![What the engine found, as the animated graphic's last frame](content/ap-engine-live-still.png)
+
+**What the graphic shows, in an 8-second build:**
+1. The OXYGEN × ContactOut header.
+2. The funnel growing in: accounts in, Fit A or B, fit plus a fresh signal, Tier A or B, buyers found (with how many emails ContactOut found), and copy ready.
+3. The 2 top accounts with their signal chips (job ads, ERP, a new finance leader from ContactOut).
+4. "Get the kit" with the QR to the GTM Architecture Kit and the WEBINAR50 code.
+
+**Outputs:** 6 files in `generated/<prefix>/`: `results.json`, `linkedin-post.md`, `ap-engine-live.gif` (1080×1350), `ap-engine-live.mp4` and `ap-engine-live-still.png`.
+
+```sh
+python3 build_engine.py --folder "AP engine · Live build" --label Live --prefix live --run --content   # build, run, then make the content
+python3 content/build_content.py --folder "AP engine · Live build" --label Live --prefix live          # content only, about 30 s
+```
+
+**Names:** companies are anonymized by default ("aerospace parts maker, 162 staff"). `--names` shows real company names; people never appear.
+
+**Requirements:** rendering needs Node.js with Playwright and Chromium (`npm install --no-save playwright && npx playwright install chromium` in `content/`) and ffmpeg; `--no-render` writes only the results and the post.
+
+**The draft:**
+- The post is written in a plain build-in-public shape and passes the slop filter's rules.
+- Edit it in your own voice.
+- `--oxygen-draft` saves the post and GIF as an OXYGEN Publishing draft, with no sender and no schedule, and only with your go.
+
+**Never publish from the session.** Post it yourself afterwards.
 
 ## Workflows
 
@@ -147,6 +177,7 @@ Or let [build_engine.py](build_engine.py) do steps 1 to 6 for you (next section)
 - [workflows/](workflows): W1, W1b, W2 and W3 recipe source.
 - [spec/](spec): the prompts (fit, persona, why-now, research, copy), the account filters, the ERP formula and the Sequence steps.
 - [build_engine.py](build_engine.py): rebuilds the whole engine in any folder.
+- [content/](content): the content step (results, a LinkedIn post draft, the animated GIF) and its renderer.
 - [diagrams/](diagrams): the outbound-engine map and the wiring map.
 
 **Webinar code WEBINAR50:** $50 off your first OXYGEN credit top-up (minimum $51, until 2026-12-31, first 100 redemptions).

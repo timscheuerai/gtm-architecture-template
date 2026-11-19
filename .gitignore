@@ -18,3 +18,5 @@ context/raw/assets/
 context/research/
 client_secrets.json
 token.json
+examples/ap-automation-signal-engine/generated/
+examples/ap-automation-signal-engine/content/results.js
