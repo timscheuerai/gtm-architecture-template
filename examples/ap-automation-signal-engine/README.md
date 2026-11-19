@@ -29,21 +29,26 @@ Column-by-column definitions, prompts and formulas: [tables.md](tables.md).
 
 ## What the build produced
 
-**385 accounts → 180 Fit B (0 Fit A) → 3 Tier B → 1 buyer → 1 approval waiting**, for about 320 credits in total. Nothing was sent.
+**First pass, Blitz signals only:** 385 accounts → 180 Fit B (0 Fit A) → 3 Tier B → 1 buyer. A market-wide sample rarely hits the same company twice, so single signals stayed below the line.
 
-- **Tier B:** three accounts, each with a fresh ERP-migration posting: a furniture manufacturer naming SAP, a construction firm naming Microsoft Dynamics and a logistics software firm naming NetSuite.
+**With the ContactOut layer:** 385 accounts → 180 Fit B → 82 with a new finance leader → **7 Tier A + 3 Tier B** → 13 buyers → 12 emails (4 found by ContactOut) → 1 approval to enroll 13. About 480 credits in total. Nothing was sent.
+
+- **How Tier A happens:** fresh AP or CFO hiring, a finance leader new in the seat, and the stacking bonus. An aerospace parts maker with 4 AP postings scored 25 + 20 + 10 = 55.
+- **Tier B:** fresh ERP-migration postings at a furniture manufacturer naming SAP, a construction firm naming Microsoft Dynamics and a logistics software firm naming NetSuite.
 - **The weak-signal rule worked:** single AP, CFO or audit postings scored 15 to 25 and stayed Tier C.
 - **The size gate stopped spend:** a defense contractor, a big-box retailer and an EV maker all name SAP in their job ads and stayed Fit C on size.
-- **Why-now spend:** 12 credits for the 3 Tier B accounts. The same column on all 385 accounts would have cost about 1,540.
-- **The buyer:** one controller, classified Champion. No email was found, so 0 credits were charged and the buyer goes to LinkedIn steps only.
+- **Why-now spend:** about 4 credits a row at Tier A/B only. The same column on all 385 accounts would cost about 1,540.
+- **Buyers:** CFOs (economic buyers), controllers (champions) and AP managers (users). MillionVerifier checked every email; BounceBan ran on the one catch-all.
+
+![How the engine is wired](diagrams/ap-engine-wiring.png)
 
 ## ContactOut in the engine
 
 The webinar was co-marketed with ContactOut, which slots into four places:
 
 1. **Size the pool for free.** `contactout.people_count` takes up to 50 domains and a list of titles per call and costs nothing. At the 179 Fit B accounts it counted 820 finance buyers, about 98% of them with an estimated work email.
-2. **A new-CFO signal nobody else covers.** The same free count with `years_in_current_role: ["0_1"]` finds finance leaders in their first year. At the first 50 Fit B accounts it counted 35. W1b writes this count to Accounts as a 20-point signal.
-3. **The waterfall.** Work email runs Blitz first and ContactOut on a miss, billed only on a hit. The free `work_email_status` and `phone_status` checks say whether ContactOut holds the data before you pay; phone runs for Tier A only.
+2. **A new-CFO signal nobody else covers.** The same free count with `years_in_current_role: ["0_1"]`, run once per account, finds finance leaders in their first year. W1b found one at 82 of 180 fit accounts and writes the count to Accounts as a 20-point signal. It is the layer that turned single hiring signals into Tier A.
+3. **The waterfall.** Work email runs Blitz first and ContactOut on a miss, billed only on a hit. In the build ContactOut found 4 of the 12 emails, all ones Blitz missed. The free `work_email_status` and `phone_status` checks say whether ContactOut holds the data before you pay; phone runs for Tier A only.
 4. **Past champions.** `contactout.email_profile_enrich` turns a former customer contact's old work email into their current profile, so a job change shows up (16.5 credits a check).
 
 ## Workflows
@@ -53,8 +58,8 @@ Recipe source in [workflows/](workflows). Each runs on demand here; the producti
 | Workflow | What it does | Ceiling per run |
 |---|---|---|
 | W1 Signals into Accounts | Stores the signal formulas, adds kept hiring companies that are new to Accounts, enriches them, waits, runs AP Company Fit | 400 |
-| W1b New finance leaders | Free ContactOut count of leaders under 1 year in role per Fit A/B account | 0 credits |
-| W2 Tier A/B to buyers | Stores the Accounts values, finds buyers (Blitz, then ContactOut), writes why-now, runs persona fit and the email waterfall | 300 |
+| W1b New finance leaders | Free ContactOut count of leaders under 1 year in role per Fit A/B account | 20 (the counts are free; each workflow step is metered at about 0.05) |
+| W2 Tier A/B to buyers | Stores the Accounts values, finds buyers (Blitz, then ContactOut), writes why-now, runs persona fit, the email waterfall, MillionVerifier and BounceBan on catch-all | 300 |
 | W3 Route to outbound | Picks the Sequence from the top trigger, **pauses for a human approval**, then enrolls into a draft Sequence | 5 |
 
 Next: W4 reads each account's SPF record weekly through a DNS-over-HTTPS GET (the native `oxygen.http_json_request` step, or a custom HTTP integration) and records newly added finance vendors as signals. W5 checks past champions monthly.

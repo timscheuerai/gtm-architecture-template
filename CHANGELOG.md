@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.1 · 2026-11-19
+
+- The AP example now reports the run with the ContactOut layer. Free counts of new finance leaders lift it to 7 Tier A and 3 Tier B accounts and 13 buyers, and ContactOut found 4 of the 12 emails.
+- Added the "How the engine is wired" map and refreshed "The outbound engine" map, both ending with the take-it-home panel.
+- W2 now verifies every found email with MillionVerifier and sends catch-all addresses to BounceBan.
+
 ## 0.4.0 · 2026-11-19
 
 - Added the [AP automation signal engine](examples/ap-automation-signal-engine/README.md) worked example from the ContactOut x GTM Collective webinar: invented ICP, buyers and signal weights; every table, formula and prompt; recipes W1, W1b, W2 and W3; four draft Sequences; measured costs and the funnel.

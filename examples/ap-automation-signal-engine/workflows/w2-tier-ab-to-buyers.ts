@@ -294,6 +294,38 @@ export default defineRecipe({
       }, { key: "email-waterfall" });
     }
 
+    // 6. Verify every found email (MillionVerifier, about 0.23 a row), then
+    //    BounceBan (1.7) only where MillionVerifier says catch-all.
+    if (fitting.length > 0) {
+      await ctx.wait("let-emails-land", { seconds: 120 });
+      const withEmail = rowsOf(await ctx.tools.run("oxygen.rows_query", {
+        table: BUYERS,
+        fields: ["_row_id", "email"],
+        limit: 5000,
+      }, { key: "read-emails" }))
+        .filter((row) => fitting.includes(String(row._row_id)) && typeof row.email === "string" && row.email)
+        .map((row) => String(row._row_id));
+      if (withEmail.length > 0) {
+        await ctx.tools.run("oxygen_columns_run", {
+          table: BUYERS,
+          column: "email_verification",
+          selection: { mode: "row_ids", row_ids: withEmail },
+          approved: true,
+          max_credits: Math.ceil(withEmail.length * 0.3),
+          idempotency_key: `w2-verify-${withEmail[0]}-${withEmail.length}`,
+        }, { key: "verify-emails" });
+        await ctx.wait("let-verification-land", { seconds: 60 });
+        await ctx.tools.run("oxygen_columns_run", {
+          table: BUYERS,
+          column: "bounceban_check",
+          selection: { mode: "row_ids", row_ids: withEmail },
+          approved: true,
+          max_credits: Math.ceil(withEmail.length * 1.8),
+          idempotency_key: `w2-bounceban-${withEmail[0]}-${withEmail.length}`,
+        }, { key: "bounceban-catch-all" });
+      }
+    }
+
     return { accounts: accounts.length, buyers: newIds.length, persona_fit: fitting.length };
   },
 });
