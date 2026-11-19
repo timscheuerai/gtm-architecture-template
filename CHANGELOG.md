@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.2 · 2026-11-19
+
+- Added the editable Excalidraw scenes of both AP engine maps next to their PNGs, so you can open and change them at excalidraw.com.
+
 ## 0.5.1 · 2026-11-19
 
 - **The content step is in the AP example** (`examples/ap-automation-signal-engine/content/`), closing the 0.5.0 TODO.

@@ -178,6 +178,6 @@ Or let [build_engine.py](build_engine.py) do steps 1 to 6 for you (next section)
 - [spec/](spec): the prompts (fit, persona, why-now, research, copy), the account filters, the ERP formula and the Sequence steps.
 - [build_engine.py](build_engine.py): rebuilds the whole engine in any folder.
 - [content/](content): the content step (results, a LinkedIn post draft, the animated GIF) and its renderer.
-- [diagrams/](diagrams): the outbound-engine map and the wiring map.
+- [diagrams/](diagrams): the outbound-engine map and the wiring map, as PNGs and as editable Excalidraw scenes (`ap-outbound-engine.excalidraw`, `ap-engine-wiring.excalidraw`). To edit one, open [excalidraw.com](https://excalidraw.com) and use Open to load the file. The logos are embedded. The maps were drawn in Geist; Excalidraw shows its own fonts unless you have Geist installed.
 
 **Webinar code WEBINAR50:** $50 off your first OXYGEN credit top-up (minimum $51, until 2026-12-31, first 100 redemptions).
