@@ -95,4 +95,4 @@ Use the [signal-account-engine](../../.agents/skills/signal-account-engine/SKILL
 - [sequences/](sequences): four draft Sequences (ERP, CFO, audit and AP, past champion).
 - [diagrams/](diagrams): the engine map.
 
-**Webinar code CONTACTOUT50:** $50 off your first OXYGEN credit top-up (minimum $51, until 2026-12-31, first 100 redemptions).
+**Webinar code WEBINAR50:** $50 off your first OXYGEN credit top-up (minimum $51, until 2026-12-31, first 100 redemptions).

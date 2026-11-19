@@ -12,7 +12,7 @@ The live build is in [examples/ap-automation-signal-engine](examples/ap-automati
 
 > Use signal-account-engine and the AP automation worked example. Build the same engine for my ICP and stop before any paid step for my approval.
 
-**Webinar code CONTACTOUT50:** $50 off your first OXYGEN credit top-up (minimum $51, until 2026-12-31, first 100 redemptions).
+**Webinar code WEBINAR50:** $50 off your first OXYGEN credit top-up (minimum $51, until 2026-12-31, first 100 redemptions).
 
 ## Get a result first
 
