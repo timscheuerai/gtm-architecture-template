@@ -36,6 +36,7 @@ const ACCOUNT_REFRESH = [
 ];
 const BUYER_LOOKUPS = ["account_tier", "account_fit", "top_trigger", "account_erp", "account_industry", "months_in_role"];
 const WHY_NOW_CREDITS_PER_ROW = 5; // list about 4
+const RESEARCH_CREDITS_PER_ROW = 6.5; // quick depth, typical about 2.1, reserves more
 const PERSONA_CREDITS_PER_ROW = 0.1; // list 0.075
 const EMAIL_CREDITS_PER_ROW = 18; // worst case: ContactOut hit at 16.5
 
@@ -256,6 +257,15 @@ export default defineRecipe({
         max_credits: Math.ceil(accountIds.length * WHY_NOW_CREDITS_PER_ROW),
         idempotency_key: `w2-why-now-${accountIds[0]}-${accountIds.length}`,
       }, { key: "why-now" });
+      // AI research agent on the same accounts (quick depth, about 2.1 a row).
+      await ctx.tools.run("oxygen_columns_run", {
+        table: ACCOUNTS,
+        column: "account_research",
+        selection: { mode: "row_ids", row_ids: accountIds },
+        approved: true,
+        max_credits: Math.ceil(accountIds.length * RESEARCH_CREDITS_PER_ROW),
+        idempotency_key: `w2-research-${accountIds[0]}-${accountIds.length}`,
+      }, { key: "research" });
     }
     if (newIds.length === 0) return { accounts: accounts.length, buyers: 0 };
 

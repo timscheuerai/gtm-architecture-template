@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.5.0 · 2026-11-19
+
+- **The LinkedIn content system, complete.** 24 skills added and 22 updated from the LinkedIn Funnel kit, with the newest generic method changes ported in.
+  - Added: `content-waterfall`, `linkedin-hook-writer`, `linkedin-engage`, `linkedin-article-adapter`, `linkedin-unibox-reply`, `lead-magnet-delivery`, `lead-magnet-launch`, `x-article-writer`, `x-planner`, `x-engage`, `x-research`, `content-interview`, `content-review`, `storytelling-coach`, `shortform-platform-copy`, `instagram-planner`, `swipe-file`, `diorama-3d`, `longform-edit`, `talking-head-video-cut`, `video-editor`, `youtube-thumbnail-outlier-research`, `youtube-title-outlier-packaging` and `youtube-video-research`.
+  - The 2026-11 method changes cover the shape of posts that perform, hook spacing, structure before sentences, tagging, one post per piece across platforms, X written like the author's LinkedIn, the content and originality gate for graphics, packaging research before the edit, and the comment-cache fix for lead-magnet delivery.
+- **Slop filter:** added `context/voice/slop-filter.md`, a 9-check filter every content skill runs before showing a draft.
+- **Guides:** added the content waterfall, DM conversion, Notion, profile watcher and qualification guides under `docs/`.
+- **The AP example matches the latest engine:**
+  - W1 scores every account without a fit; W2 adds an AI research agent; W3 writes short AI copy (the why-now fact, the pain, a free resource offer), waits for approval and enrolls into 1 Benchmark Sequence. The 4 trigger Sequences are gone.
+  - The prompts and Sequence steps live in `spec/`.
+  - `build_engine.py` rebuilds the whole engine in any folder ("build that system").
+  - New README sections cover the both-paths strategy and 4 more build lessons.
+- TODO: the content step (`build_content.py`: results.json, a LinkedIn post draft and an animated GIF from the engine's own tables) is not in the kit yet; `build_engine.py --content` says so.
+
 ## 0.4.1 · 2026-11-19
 
 - The AP example now reports the run with the ContactOut layer. Free counts of new finance leaders lift it to 7 Tier A and 3 Tier B accounts and 13 buyers, and ContactOut found 4 of the 12 emails.

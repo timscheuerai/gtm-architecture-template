@@ -30,6 +30,7 @@ Blank context pages, grouped by purpose. These headings are prompts, not claims 
 
 - [[voice/linkedin-voice|LinkedIn voice]]
 - [[voice/formats|Formats]]
+- [[voice/slop-filter|Slop filter]]
 
 ## brand
 

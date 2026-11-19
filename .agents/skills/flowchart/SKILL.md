@@ -46,3 +46,7 @@ Python estimates text sizes for authoring; actual glyph measurement and visual i
 Open the rendered overview and useful detail views. A dense working map needs zoom; a phone preview checks hierarchy, not proof that every field is readable. Split a social graphic into fewer nodes or multiple slides.
 
 Deliver the editable scene, preview where available, dimensions, viewing URL and any inspection limitation. Keep reusable mechanics here and domain content in the diagram's own folder.
+
+## Newest method (2026-11 refresh)
+
+Apply the content and originality gate in [graphics-designer](../graphics-designer/SKILL.md) to new instructional maps. Inspect 2 relevant rendered references before choosing the layout. Preserve the source system's useful detail and include meaningful icons, authentic logos where they identify a tool, concrete inputs and outputs, and real decision branches. For a dense system, deliver a zoomable map plus section crops instead of reducing the process to generic funnel labels.

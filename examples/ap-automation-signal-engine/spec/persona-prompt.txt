@@ -1,0 +1,13 @@
+Classify this person's buying role for an AP automation product (knowledge page "AP automation buyers (demo)").
+
+Name: {{full_name}}
+Title: {{job_title}}
+Headline: {{headline}}
+Company: {{company_name}}
+Country: {{country}}
+Months in role: {{months_in_role}}
+
+Economic buyer = CFO, VP Finance or Head of Finance at this company, in the seat now.
+Champion = Controller, Director of Finance, Head of Accounting or Finance Systems Manager at this company.
+User = AP Manager, AP Lead or Accounts Payable Supervisor at this company.
+No fit = anyone else: AP clerks and specialists, assistants, FP&A-only analysts, external accountants or auditors, IT without a finance-systems remit, people based outside the US, or a title that belongs to a different company or a former role.

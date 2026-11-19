@@ -9,8 +9,9 @@ import { defineRecipe } from "@oxygen/recipe-sdk";
  *   2. Every hiring company that is not in Accounts yet becomes a new account
  *      (dedupe on the normalized company LinkedIn URL).
  *   3. Enrich the new accounts (Blitz first, about 1 credit a company), wait
- *      for the facts to land, then score them with AP Company Fit
- *      (0.075 credits a row). Fit C accounts get no further spend.
+ *      for the facts to land, then score EVERY account without a fit
+ *      (sourced and new) with AP Company Fit (0.075 credits a row).
+ *      Fit C accounts get no further spend. `rescore: true` re-scores all.
  *
  * Score and tier are free formulas on Accounts, so they update on read.
  * Rules: knowledge page "AP automation ICP (demo)" (../knowledge/ap-icp.md).
@@ -24,6 +25,7 @@ const SIGNAL_TABLES = [
 ];
 const SIGNAL_FORMULAS = ["company_linkedin_url", "kept_company_li", "age_days", "erp_named", "erp_company_li"];
 const ACCOUNTS = "accounts";
+const FIT_INPUTS = ["erp_from_cfo", "erp_from_erp", "erp_from_audit", "erp_from_ap", "erp", "acct_domain", "acct_industry", "acct_employees", "acct_description"];
 const ENRICH_CREDITS_PER_ROW = 1.5; // ceiling, list price is about 1
 const FIT_CREDITS_PER_ROW = 0.1; // ceiling, list price is 0.075
 
@@ -69,15 +71,18 @@ export default defineRecipe({
     type: "object",
     properties: {
       max_new: { type: "number", minimum: 1, maximum: 500 },
+      enrich_wait_seconds: { type: "number", minimum: 30, maximum: 900 },
+      rescore: { type: "boolean" },
       audit: { type: "boolean" },
     },
     additionalProperties: false,
   },
   tools: ["oxygen.rows_query", "oxygen.rows_upsert", "oxygen_columns_run"],
   async run(ctx) {
-    const input = (ctx.input ?? {}) as { max_new?: number; audit?: boolean };
+    const input = (ctx.input ?? {}) as { max_new?: number; enrich_wait_seconds?: number; rescore?: boolean; audit?: boolean };
     const audit = input.audit === true || ctx.mode !== "live";
     const maxNew = Math.min(Math.max(Math.floor(input.max_new ?? 250), 1), 500);
+    const enrichWait = Math.min(Math.max(Math.floor(input.enrich_wait_seconds ?? 300), 30), 900);
 
     // 0. Refresh the signal tables' formula columns (free). Accounts' lookups
     //    match on stored values, and age_days moves every day.
@@ -138,7 +143,7 @@ export default defineRecipe({
       new_accounts: fresh.length,
       audit,
     });
-    if (audit || fresh.length === 0) {
+    if (audit) {
       return { audit, kept_companies: companies.size, new_accounts: fresh.length };
     }
 
@@ -154,29 +159,49 @@ export default defineRecipe({
       const ids = result?.row_ids ?? result?.ids ?? [];
       for (const id of ids) if (typeof id === "string") newIds.push(id);
     }
-    if (newIds.length === 0) return { new_accounts: fresh.length, enriched: 0, note: "upsert returned no ids" };
 
-    // 4. Enrich the new accounts, then score fit once their facts have landed.
-    await ctx.tools.run("oxygen_columns_run", {
+    // 4. Enrich the new accounts (sourced companies already carry their facts).
+    if (newIds.length > 0) {
+      await ctx.tools.run("oxygen_columns_run", {
+        table: ACCOUNTS,
+        column: "company_enrich",
+        selection: { mode: "row_ids", row_ids: newIds },
+        approved: true,
+        max_credits: Math.ceil(newIds.length * ENRICH_CREDITS_PER_ROW),
+        idempotency_key: `w1-enrich-${newIds[0]}-${newIds.length}`,
+      }, { key: "enrich-new-accounts" });
+      await ctx.wait("let-enrichment-land", { seconds: enrichWait });
+    }
+
+    // 5. Store the fit inputs (ERP lookups and "any source" facts), then score
+    //    company fit for EVERY account that has no fit yet: sourced and new.
+    for (const column of FIT_INPUTS) {
+      await ctx.tools.run("oxygen_columns_run", {
+        table: ACCOUNTS, column, selection: { mode: "all" }, force: true, background: true,
+      }, { key: `refresh-fit-input-${column}` });
+    }
+    await ctx.wait("let-fit-inputs-refresh", { seconds: 45 });
+
+    const unscored = rowsOf(await ctx.tools.run("oxygen.rows_query", {
       table: ACCOUNTS,
-      column: "company_enrich",
-      selection: { mode: "row_ids", row_ids: newIds },
-      approved: true,
-      max_credits: Math.ceil(newIds.length * ENRICH_CREDITS_PER_ROW),
-      idempotency_key: `w1-enrich-${newIds[0]}-${newIds.length}`,
-    }, { key: "enrich-new-accounts" });
+      fields: ["ap_company_fit"],
+      limit: 5000,
+    }, { key: "read-fit" }))
+      .filter((row) => input.rescore === true || !row.ap_company_fit)
+      .map((row) => String(row._row_id))
+      .filter((id) => id && id !== "undefined");
+    if (unscored.length > 0) {
+      await ctx.tools.run("oxygen_columns_run", {
+        table: ACCOUNTS,
+        column: "ap_company_fit",
+        selection: { mode: "row_ids", row_ids: unscored },
+        force: input.rescore === true,
+        approved: true,
+        max_credits: Math.ceil(unscored.length * FIT_CREDITS_PER_ROW),
+        idempotency_key: `w1-fit-${unscored[0]}-${unscored.length}-${input.rescore === true ? "rescore" : "new"}`,
+      }, { key: "fit-accounts" });
+    }
 
-    await ctx.wait("let-enrichment-land", { seconds: 300 });
-
-    await ctx.tools.run("oxygen_columns_run", {
-      table: ACCOUNTS,
-      column: "ap_company_fit",
-      selection: { mode: "row_ids", row_ids: newIds },
-      approved: true,
-      max_credits: Math.ceil(newIds.length * FIT_CREDITS_PER_ROW),
-      idempotency_key: `w1-fit-${newIds[0]}-${newIds.length}`,
-    }, { key: "fit-new-accounts" });
-
-    return { kept_companies: companies.size, new_accounts: newIds.length };
+    return { kept_companies: companies.size, new_accounts: newIds.length, fit_scored: unscored.length };
   },
 });

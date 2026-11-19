@@ -8,7 +8,7 @@ Workspace: all context paths below (identity, audience, strategy, voice, brand, 
 
 # Plan the week
 
-Read `AGENTS.md`, `index.md`, the relevant identity and audience pages, `identity/proof.md`, strategy/goals.md, strategy/pillars.md, strategy/funnel.md and voice/linkedin-voice.md. Read local preferences if present.
+Read `AGENTS.md`, `index.md`, the relevant identity and audience pages, `identity/proof.md`, strategy/goals.md, strategy/pillars.md, strategy/funnel.md and voice/linkedin-voice.md. Read local preferences if present. When the context also holds the author's verbatim words, a story bank or a page on what performs on their account, read those too; personal stories come only from material marked public or approved by the author.
 
 ## Choose the dates and material
 
@@ -29,3 +29,10 @@ A request to draft a week into the board authorizes creating draft cards in the 
 Without Notion, return the plan and drafts in chat. Do not start a local posts database or pretend cards were saved.
 
 Report date, pillar, topic, funnel job and card link where created. State which content is still waiting on input. Log the run without duplicating post copy. A planned date is not a scheduled publishing action.
+
+## Newest method (2026-11 refresh)
+
+- Read the author's newest stances and never-say list before proposing; numbers come only from the cleared proof page.
+- Read the pillar page of each slot before filling it.
+- Include experience-led candidates when the week's real material supports them: show the situation, the stakes, the author's actual decision or reaction, and what is known or unresolved before moving to the lesson. A single incident can carry a whole post. Keep systems and framework posts too; never invent vulnerability, dialogue or results to fill a slot.
+- Run every draft through `voice/slop-filter.md`.

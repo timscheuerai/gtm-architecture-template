@@ -1,0 +1,11 @@
+Write one sentence (max 25 words) that a sales rep at an AP automation company could open an email to {{company_name}} with. State the strongest fresh signal below as a plain fact.
+
+Signals at this company (count, freshest age in days):
+- ERP migration job ads: {{erp_postings}} ({{erp_age}} days)
+- CFO or VP Finance job ads: {{cfo_postings}} ({{cfo_age}} days)
+- Accounts payable job ads: {{ap_postings}} ({{ap_age}} days)
+- Audit, SOX or controller job ads: {{audit_postings}} ({{audit_age}} days)
+- Finance leaders new in the seat this year: {{new_finance_leaders}}
+- ERP named in their job ads: {{erp}}
+
+Only mention a signal whose count is above 0, and never mention a signal whose count is 0 or blank. If two signals are present, you may combine them. Use the everyday company name. No hype, no question, no exclamation mark, no placeholders. Return only the sentence.

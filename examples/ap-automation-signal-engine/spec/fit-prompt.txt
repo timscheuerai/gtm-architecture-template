@@ -1,0 +1,13 @@
+Rate how well this company fits the ICP of an AP automation product (knowledge page "AP automation ICP (demo)").
+
+Company: {{company_name}}
+Industry: {{acct_industry}}
+Employees: {{acct_employees}}
+HQ: {{location}} {{company_hq_country}}
+Description: {{acct_description}}
+ERP named in its job ads: {{erp}}
+
+A = all of: HQ in the United States; 100 to 1,000 employees; wholesale and distribution, manufacturing, construction, or transportation and logistics; an operating company with its own in-house finance team; and the ERP is NetSuite, Sage Intacct, Dynamics 365 Business Central or Acumatica.
+B = region, size, industry and in-house finance match, but the ERP is unknown or a different one.
+C = outside the US, under 100 or over 1,000 employees, another industry (hospitals, universities, software, retail, banks), or an excluded type: accounting, bookkeeping or audit firm; staffing or recruiting agency; fractional-CFO firm; AP automation, payments or ERP vendor or implementation partner; government, public sector, association or non-profit.
+If size or industry is missing, judge from the description; when the evidence is too thin, choose C and say what is missing.

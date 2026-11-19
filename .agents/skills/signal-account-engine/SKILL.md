@@ -1,6 +1,6 @@
 ---
 name: signal-account-engine
-description: Build a signal-scored outbound engine in OXYGEN: source the TAM, enrich and fit-score companies, layer hiring and leadership signals into a free score and tier, then find, fit-score and enrich buyers only at Tier A and B accounts and route them to draft Sequences behind an approval.
+description: Build a signal-scored outbound engine in OXYGEN: source the TAM, enrich and fit-score companies, layer hiring and leadership signals into a free score and tier, then find, fit-score and enrich buyers only at Tier A and B accounts and write short researched copy and route them into 1 draft Sequence behind an approval.
 ---
 
 # Build the signal-scored account engine
@@ -19,7 +19,10 @@ Score every account on cheap account-level signals first, pay for contacts only 
 6. **Find the buyer** at Tier A and B accounts only: a cheap people search first, ContactOut where it finds nobody.
 7. **Score persona fit** with a Classify column against the buyers page; a misfit sends the search to the next role.
 8. **Contact waterfall.** Work email Blitz first, ContactOut on a miss (billed on a hit), verification, then LinkedIn steps only when no email is verified.
-9. **Route** ([oxygen-workflow-authoring](../oxygen-workflow-authoring/SKILL.md), [oxygen-sequencer](../oxygen-sequencer/SKILL.md)): ready buyers go to the Sequence for their account's top trigger, behind a human approval. Sequences stay drafts until someone starts them with a send ceiling.
+9. **Research and copy:** an AI research agent reads each Tier A/B account (cited); an AI column writes short copy per ready buyer: the why-now fact, the pain it brings in 1 line, and 1 offer, ideally a free resource, as a question (25 to 45 words).
+10. **Route** ([oxygen-workflow-authoring](../oxygen-workflow-authoring/SKILL.md), [oxygen-sequencer](../oxygen-sequencer/SKILL.md)): ready buyers go into 1 draft Sequence that reads the copy columns, behind a human approval. The Sequence stays a draft until someone starts it with a send ceiling.
+
+Run both paths: this signal path puts fresh-signal accounts first, and a coverage path gives every fit account 1 touch every 90 days within sending capacity. Both refresh themselves. To rebuild the worked example in a new folder in one go, use `examples/ap-automation-signal-engine/build_engine.py` (`--plan` first).
 
 ## Rules
 

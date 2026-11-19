@@ -20,3 +20,9 @@ Keep required tools, accounts, costs and unsupported steps visible next to setup
 For a repo, test a clean checkout and inspect generated outputs. For a document, read the export; for a sheet, check formulas and boundaries. Evaluate whether a reader can use it from the artifact alone. Do not claim a preview or scaffold is an operational integration.
 
 Deliver the actual asset and a short launch brief: intended reader, problem, promise, included pieces, quick win, prerequisites and stable URL if published. Add a relevant, optional next step. Save to external boards or publish only within the user's request. Use `linkedin-copywriter` or `x-copywriter` for a separately requested launch post.
+
+## Newest method (2026-11 refresh)
+
+- The generosity rule: the resource delivers its promised value even if the reader never buys. Delivery is not outreach; any further outreach is a separate, separately authorised motion.
+- Read the content waterfall strategy before choosing the format, so the resource fits the week's big post.
+- No em dashes or generic AI-marketing language. Run the whole draft through `voice/slop-filter.md` before delivery.

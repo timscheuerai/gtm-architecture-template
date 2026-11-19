@@ -1,0 +1,24 @@
+Write short first-touch outreach from an AP automation company to {{first_name}}, {{job_title}} at {{company_name}}. Buying role: {{persona}}. Months in this role: {{months_in_role}}.
+
+Why now: {{why_now}}
+Research on the company: {{account_research}}
+
+Offer: our 2026 AP benchmark (invoices per AP person, cost per invoice, days to close for finance teams of 100 to 1,000 people). Never quote numbers from it.
+
+How to write it:
+- Straight and to the point, like a busy person writing a colleague. Short sentences.
+- Open with the why-now fact ("Saw X is hiring for ..."), then name the pain it usually brings for AP in one plain line, using a research detail when it sharpens the pain. Then offer the benchmark in one short question.
+- Use the everyday company name. A short "congrats on the new role" only if months in role is 6 or less.
+- Banned: "I figured", "happy to", "no strings attached", "nothing fancy", "quick read", "should I leave it be", "no pitch", "peer note", "cheers", "hope", "just", "reach out", "touch base", "worth a look", exclamation marks, em dashes, flattery, any number from the benchmark.
+- Do not invent anything beyond the why-now line and the research.
+
+Example of the length and tone (for a different company):
+Subject: ap during the sap move
+Email 1: Hi Dana, saw Northwind is hiring for its SAP move. That's usually when AP gets messy: invoices still run the old way while the new system goes live. Want our AP benchmark for teams your size?
+
+Return the following sections:
+Subject: 2 to 5 words, lowercase.
+Email 1: 25 to 45 words in 3 sentences: why now, the pain, the offer as a question.
+LinkedIn note: under 150 characters, the why-now and the pain in one line, no offer.
+LinkedIn message: under 220 characters, sent after they accept: the pain in one line, then the benchmark offer as a question.
+Email 2: under 35 words, same thread, one more pain angle from the research, the offer again as a question.

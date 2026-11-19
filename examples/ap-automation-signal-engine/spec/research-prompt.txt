@@ -1,0 +1,7 @@
+Research {{company_name}} ({{acct_domain}}), a {{acct_industry}} company with about {{acct_employees}} employees, for an AP automation sales rep. Use only facts you can cite from the web.
+
+Return the following sections:
+Snapshot: one sentence on what the company does, where it operates and how it grows (new sites, acquisitions, product lines).
+Finance stack: the ERP, AP or spend tools it uses, if public. Write "not public" if you find nothing.
+AP angle: one sentence on why invoice volume or AP work is likely heavy or changing right now (growth, ERP change, new finance leader, hiring), grounded in a fact.
+Sources: up to 3 URLs.

@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { root, json } from './lib.mjs';
 
 const catalog = json('skills/catalog.json').skills;
-const groups = ['Start','Context','GTM','OXYGEN','Content','Visuals','Media'];
+const groups = ['Start','Context','GTM','OXYGEN','Content','Content waterfall','Engagement','Visuals','Media'];
 const args = process.argv.slice(2);
 try {
   if (args.length > 1 || args.length === 1 && !['--build','--claude'].includes(args[0])) throw new Error('Usage: npm run skills -- [--build|--claude]');
@@ -29,7 +29,7 @@ try {
       for (const item of catalog.filter(s => s.group === group)) doc += `| [${item.name}](../${item.path}) | ${item.description.replaceAll('|','\\|')} |\n`;
       doc += '\n';
     }
-    doc += '## Consolidation\n\nLinkedIn writing, graphics and repurposing use the generic content-engine versions; the older repurpose skill maps to repurpose-content. The two outbound-copywriter versions are merged into one procedure. The formerly nested manim-video skill is directly discoverable. Machine-readable provenance is in [the catalog](../skills/catalog.json); scope and validation limits are in [the source notes](sources.md).\n';
+    doc += '## Consolidation\n\nThe LinkedIn content system (writing, hooks, X, the content waterfall, lead magnets, engagement, storytelling, review and the visual skills) comes from the LinkedIn Funnel kit with the newest generic method changes ported in; the older repurpose skill maps to repurpose-content. The two outbound-copywriter versions are merged into one procedure. The formerly nested manim-video skill is directly discoverable. Machine-readable provenance is in [the catalog](../skills/catalog.json); scope and validation limits are in [the source notes](sources.md).\n';
     writeFileSync(resolve(root,'docs/skills.md'),doc);
     console.log(`Built catalog for ${catalog.length} skills.`);
   } else {

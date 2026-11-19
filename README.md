@@ -34,7 +34,7 @@ The demo runs the six deterministic functions using synthetic research, scores, 
 |---|---|
 | [Company brief and rubrics](company) | One buyer, useful offer, independent fit gates and exclusions |
 | [13 function templates](docs/oxygen-setup.md#the-functions) | Source intake, research, scoring, priority queues, contact lookup, test assignment, copy, readiness and results |
-| [61 agent skills](docs/skills.md) | Guided GTM work, native OXYGEN operations, content, visuals and optional media |
+| [85 agent skills](docs/skills.md) | Guided GTM work, native OXYGEN operations, the LinkedIn content system (writing, hooks, X, waterfall, lead magnets, engagement, storytelling, review), visuals and optional media |
 | [Blank context workspace](context/index.md) | Your audience, voice, source material, strategy and cleared proof |
 | [Worked example](examples/demo/report.md) | Inspectable decisions and held rows before you connect tools |
 | [Signal engine example](examples/ap-automation-signal-engine/README.md) | A live OXYGEN build: signals, free scoring, tiers, buyers, waterfall and approval-gated routing |
